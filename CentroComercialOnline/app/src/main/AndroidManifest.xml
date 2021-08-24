@@ -10,13 +10,48 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CentroComercialOnline">
         <activity
+            android:name=".CategoriasElect"
+            android:exported="true" />
+        <activity
+            android:name=".CategoriasRopa"
+            android:exported="true" />
+        <activity
+            android:name=".DetalleProductos"
+            android:exported="true" />
+        <activity
+            android:name=".Pedido"
+            android:exported="true" />
+        <activity
+            android:name=".Carrito"
+            android:exported="true" />
+        <activity
+            android:name=".Productos"
+            android:exported="true" />
+        <activity
+            android:name=".Tiendas"
+            android:exported="true" />
+        <activity
+            android:name=".UserInformation"
+            android:exported="true" />
+        <activity
+            android:name=".Registrar"
+            android:exported="true"
+            android:label="@string/title_activity_registrarse" />
+        <activity
+            android:name=".LoginPage"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SplashScreen"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
     </application>
 

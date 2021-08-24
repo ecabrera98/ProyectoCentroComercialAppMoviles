@@ -1,5 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../../../layout/custom_preview.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/bordes_redondos.xml" value="0.20520833333333333" />
+        <entry key="app/src/main/res/drawable/ic_activity.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_box.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_settings.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_shopping_cart.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-w1240dp/activity_registrarse.xml" value="0.1214859437751004" />
+        <entry key="app/src/main/res/layout-w1240dp/center_carousel_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-w936dp/activity_registrarse.xml" value="0.141796875" />
+        <entry key="app/src/main/res/layout/activity_categoria_productos.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_categorias_elect.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/activity_categorias_ropa.xml" value="0.1890625" />
+        <entry key="app/src/main/res/layout/activity_detalle_productos.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_elects_carousel.xml" value="0.1890625" />
+        <entry key="app/src/main/res/layout/activity_horizontal.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_login_page.xml" value="0.1890625" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_productos.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_registrarse.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.1875" />
+        <entry key="app/src/main/res/layout/activity_tiendas.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_user_information.xml" value="0.14" />
+        <entry key="app/src/main/res/layout/activity_vertical.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/app_bar_home.xml" value="0.1890625" />
+        <entry key="app/src/main/res/layout/barmenu.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/center_carousel_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/food_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/home.xml" value="0.1890625" />
+        <entry key="app/src/main/res/layout/item_productos.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_tiendas.xml" value="0.12" />
+        <entry key="app/src/main/res/layout/splash.xml" value="0.1875" />
+        <entry key="app/src/main/res/layout/start_carousel_elects_item.xml" value="0.1890625" />
+        <entry key="app/src/main/res/layout/start_carousel_ropa_item.xml" value="0.1890625" />
+        <entry key="app/src/main/res/menu/menucc.xml" value="0.1890625" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

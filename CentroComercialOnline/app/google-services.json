@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "783465866019",
+    "project_id": "proyectoappmovilescc",
+    "storage_bucket": "proyectoappmovilescc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783465866019:android:982963f1a394fc8269a296",
+        "android_client_info": {
+          "package_name": "com.example.centrocomercialonline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "783465866019-7m9he8r7cb7fs7fj43s9uso109t7ntk5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfaJpo1CMLemIfPQzCruGXZQt7xCS85fU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "783465866019-7m9he8r7cb7fs7fj43s9uso109t7ntk5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
