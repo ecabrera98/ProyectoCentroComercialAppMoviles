@@ -44,7 +44,8 @@
             android:id="@+id/textView3"
             android:layout_width="203dp"
             android:layout_height="64dp"
-            android:text="ELECTRODOMESTICOS: \nNext TODO PARA TU HOGAR \nNext LOS MEJORES PRECIOS"
+            android:text="ELECTRODOMESTICOS: \nTODO PARA TU HOGAR \nLOS MEJORES PRECIOS"
+            android:textColor="#F8EFE9E9"
             android:textSize="16sp"
             android:textStyle="bold" />
     </com.jama.carouselview.CarouselView>
@@ -66,7 +67,8 @@
             android:id="@+id/textView4"
             android:layout_width="208dp"
             android:layout_height="62dp"
-            android:text="ROPA: \nNext TODOS LOS MODELOS \nNext LOS MEJORES PRECIOS"
+            android:text="ROPA: \nTODOS LOS MODELOS \nLOS MEJORES PRECIOS"
+            android:textColor="#FAF5F5"
             android:textSize="16sp"
             android:textStyle="bold" />
     </com.jama.carouselview.CarouselView>
