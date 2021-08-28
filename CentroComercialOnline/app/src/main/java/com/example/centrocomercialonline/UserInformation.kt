@@ -6,9 +6,6 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.widget.Button
 
-enum class ProviderType{
-    BASIC
-}
 class UserInformation : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +16,8 @@ class UserInformation : AppCompatActivity() {
         botonIrRegistrarse
             .setOnClickListener { irActividad(Tiendas::class.java) }
     }
+
+
     fun irActividad(
         clase: Class<*>,
         parametros: ArrayList<Pair<String, *>>? = null,

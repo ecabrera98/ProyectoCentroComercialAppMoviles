@@ -8,16 +8,13 @@ import android.os.Parcelable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import com.jama.carouselview.CarouselView
-import com.jama.carouselview.enums.IndicatorAnimationType
-import com.jama.carouselview.enums.OffsetType
 
 
 class CategoriasRopa : AppCompatActivity() {
 
-    private val container by lazy { findViewById<View>(R.id.container) }
+    private val container by lazy { findViewById<View>(R.id.containerRegistrar) }
     private val title by lazy { findViewById<TextView>(R.id.title1) }
     private val menu by lazy { findViewById<ChipNavigationBar>(R.id.bottom_menu1) }
 
@@ -34,7 +31,7 @@ class CategoriasRopa : AppCompatActivity() {
                 R.id.home -> irActividad(Tiendas::class.java)  to "Inicio"
                 R.id.buscar -> R.color.colorSecundary to "Buscar"
                 R.id.carrito -> R.color.colorTres to "Carrito"
-                R.id.perfil -> R.color.white to "Perfil"
+                R.id.perfil -> irActividad(PerfilUsuario::class.java)  to "Perfil"
                 else -> R.color.white to ""
             }
 

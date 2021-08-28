@@ -100,7 +100,7 @@
         app:layout_constraintVertical_bias="0.3" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/imageViewTwitter2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -111,20 +111,20 @@
         tools:ignore="ImageContrastCheck" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/imageViewFacebook2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         app:layout_constraintBottom_toTopOf="@+id/email1"
-        app:layout_constraintEnd_toStartOf="@+id/imageView7"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewGoogle2"
         app:layout_constraintHorizontal_bias="0.524"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintStart_toEndOf="@+id/imageViewTwitter2"
         app:layout_constraintTop_toBottomOf="@+id/reg_strese_1"
         app:layout_constraintVertical_bias="0.166"
         app:srcCompat="@drawable/iconsfacebook" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/imageViewGoogle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="110dp"

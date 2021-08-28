@@ -6,11 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,7 +22,7 @@ class Productos : AppCompatActivity(),  AdapterElect.ClickListener {
     private var recyclerView: RecyclerView? = null
     var adapter: AdapterElect? = null
 
-    private val container by lazy { findViewById<View>(R.id.container) }
+    private val container by lazy { findViewById<View>(R.id.containerRegistrar) }
     private val title by lazy { findViewById<TextView>(R.id.title1) }
     private val menu by lazy { findViewById<ChipNavigationBar>(R.id.bottom_menu1) }
 
@@ -42,7 +40,7 @@ class Productos : AppCompatActivity(),  AdapterElect.ClickListener {
                 R.id.home -> irActividad(Tiendas::class.java)  to "Inicio"
                 R.id.buscar -> R.color.colorSecundary to "Buscar"
                 R.id.carrito -> R.color.colorTres to "Carrito"
-                R.id.perfil -> R.color.white to "Perfil"
+                R.id.perfil -> irActividad(PerfilUsuario::class.java)  to "Perfil"
                 else -> R.color.white to ""
             }
 

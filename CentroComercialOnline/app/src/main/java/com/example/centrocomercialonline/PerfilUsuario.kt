@@ -1,34 +1,30 @@
 package com.example.centrocomercialonline
 
+import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
-import android.view.View
-import android.widget.ImageView
+import android.widget.Button
 import android.widget.TextView
+import com.facebook.login.LoginManager
+import com.google.firebase.auth.FirebaseAuth
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
-import com.jama.carouselview.CarouselView
-import com.jama.carouselview.enums.IndicatorAnimationType
-import com.jama.carouselview.enums.OffsetType
 
+enum class ProviderType{
+    BASIC,
+    GOOGLE,
+    FACEBOOK
+}
+class PerfilUsuario : AppCompatActivity() {
 
-
-class Tiendas : AppCompatActivity(){
-
-    private val container by lazy { findViewById<View>(R.id.containerRegistrar) }
     private val title by lazy { findViewById<TextView>(R.id.title1) }
     private val menu by lazy { findViewById<ChipNavigationBar>(R.id.bottom_menu1) }
 
-    private var lastColor: Int = 0
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tiendas)
+        setContentView(R.layout.activity_perfil_usuario)
 
-        lastColor = (container.background as ColorDrawable).color
 
         menu.setOnItemSelectedListener { id ->
             val option = when (id) {
@@ -49,44 +45,43 @@ class Tiendas : AppCompatActivity(){
         }
 
 
-        val imagesElect = arrayListOf(R.drawable.elec1,R.drawable.elec2, R.drawable.elec3, R.drawable.equipo1)
-        val carouselViewElect = findViewById<CarouselView>(R.id.carouselViewTiendas1)
+        //setup
+        val bundle = intent.extras
+        val email =bundle?.getString("email")
+        val provider = bundle?.getString("provider")
+        setup(email?: "",provider ?: "")
 
-        val imagesRopa = arrayListOf(R.drawable.ropa2,R.drawable.ropa3, R.drawable.ropa1, R.drawable.ropa3)
-        val carouselViewRopa = findViewById<CarouselView>(R.id.carouselViewTiendas2)
-
-        carouselViewElect.apply {
-            size = imagesElect.size
-            autoPlay = true
-            autoPlayDelay = 3000
-            resource = R.layout.center_carousel_item
-            indicatorAnimationType = IndicatorAnimationType.COLOR
-            carouselOffset = OffsetType.CENTER
-            setCarouselViewListener { view, position ->
-                val imageView1 = view.findViewById<ImageView>(R.id.imageView)
-                imageView1.setImageDrawable(resources.getDrawable(imagesElect[position]))
-                imageView1.setOnClickListener {irActividad(CategoriasElect::class.java) }
-            }
-            show()
-        }
-
-        carouselViewRopa.apply {
-            size = imagesRopa.size
-            autoPlay = true
-            autoPlayDelay = 3000
-            resource = R.layout.center_carousel_item
-            indicatorAnimationType = IndicatorAnimationType.THIN_WORM
-            carouselOffset = OffsetType.CENTER
-            setCarouselViewListener { view, position ->
-                val imageView2 = view.findViewById<ImageView>(R.id.imageView)
-                imageView2.setImageDrawable(resources.getDrawable(imagesRopa[position]))
-                imageView2.setOnClickListener {irActividad(CategoriasRopa::class.java) }
-            }
-            show()
-        }
-
+        //Guardado de datos
+        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
+        prefs.putString("email",email)
+        prefs.putString("provider",provider)
+        prefs.apply()
 
     }
+
+    private fun setup(correo: String, provider: String) {
+        val email = findViewById<TextView>(R.id.txtCorreoUsuario)
+        val username = findViewById<TextView>(R.id.txtNombreUsuario)
+        val botonCerrarSesion = findViewById<Button>(R.id.btnCerrarSesion)
+        email.text = correo
+        username.text = provider
+
+      botonCerrarSesion.setOnClickListener{
+
+      val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
+      prefs.clear()
+      prefs.apply()
+      if(provider == ProviderType.FACEBOOK.name){
+      LoginManager.getInstance().logOut()
+      }
+          FirebaseAuth.getInstance().signOut()
+          onBackPressed()
+          irActividad(LoginPage::class.java)
+
+      }
+  }
+
+
     fun irActividad(
         clase: Class<*>,
         parametros: ArrayList<Pair<String, *>>? = null,

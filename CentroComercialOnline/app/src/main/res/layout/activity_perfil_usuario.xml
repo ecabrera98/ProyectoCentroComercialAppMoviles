@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="#FFEB3B"
+    tools:context=".PerfilUsuario">
+    <include layout="@layout/activity_horizontal"/>
+
+    <TextView
+        android:id="@+id/textViewNotificaciones"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="44dp"
+        android:text="Notificaciones"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.138"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEditarPerfil" />
+
+    <TextView
+        android:id="@+id/textViewYo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Yo"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/circularImageView"
+        android:layout_width="118dp"
+        android:layout_height="132dp"
+        android:layout_marginTop="84dp"
+        android:src="@drawable/joss"
+        app:civ_border_color="#3f51b5"
+        app:civ_border_width="4dp"
+        app:civ_shadow="true"
+        app:civ_shadow_color="#3f51b5"
+        app:civ_shadow_radius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.118"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtNombreUsuario"
+        android:layout_width="128dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="96dp"
+        android:text="Nombre Completo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.639"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtCorreoUsuario"
+        android:layout_width="196dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="24dp"
+        android:text="Correo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.841"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNombreUsuario" />
+
+    <Button
+        android:id="@+id/btnCerrarSesion"
+        android:layout_width="161dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="152dp"
+        android:background="@drawable/bordes_redondos"
+        android:text="Cerrar Sesión"
+        android:textColor="#EDE5E5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNotificaciones" />
+
+    <TextView
+        android:id="@+id/textViewMetodosPago"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="36dp"
+        android:text="Métodos de Pago"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.138"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circularImageView" />
+
+    <TextView
+        android:id="@+id/textViewEditarPerfil"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="44dp"
+        android:text="Editar Perfil"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.138"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMetodosPago" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="86dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="236dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.583"
+        app:layout_constraintStart_toEndOf="@+id/textViewMetodosPago"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cardpago" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="41dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toEndOf="@+id/textViewNotificaciones"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        app:srcCompat="@drawable/norificaciones" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="70dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewEditarPerfil"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:srcCompat="@drawable/configurarperfil" />
+</androidx.constraintlayout.widget.ConstraintLayout>
