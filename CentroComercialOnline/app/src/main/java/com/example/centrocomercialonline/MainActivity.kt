@@ -1,10 +1,15 @@
 package com.example.centrocomercialonline
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.os.Parcelable
+import android.view.View
 import android.widget.Button
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.centrocomercialonline.dto.BAuthUsuario
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,9 +26,25 @@ class MainActivity : AppCompatActivity() {
         )
         botonIrIniciarSesion
             .setOnClickListener { irActividad(LoginPage::class.java) }
+        session()
     }
 
-fun irActividad(
+
+    private fun session(){
+        val registrar = findViewById<ConstraintLayout>(R.id.mainActivity)
+        val instanciaAuth = FirebaseAuth.getInstance()
+        val usuarioLocal = instanciaAuth.currentUser
+        if(usuarioLocal != null){
+            irActividad(Tiendas::class.java)
+        }
+        else{
+            registrar.visibility = View.VISIBLE
+        }
+    }
+
+
+
+    fun irActividad(
     clase: Class<*>,
     parametros: ArrayList<Pair<String, *>>? = null,
     codigo: Int? = null

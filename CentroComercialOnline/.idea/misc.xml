@@ -22,14 +22,14 @@
         <entry key="app/src/main/res/layout/activity_detalle_productos.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_elects_carousel.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/activity_horizontal.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_login_page.xml" value="0.1890625" />
+        <entry key="app/src/main/res/layout/activity_login_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_perfil_usuario.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_productos.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_registrarse.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.1875" />
         <entry key="app/src/main/res/layout/activity_tiendas.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_user_information.xml" value="0.14" />
+        <entry key="app/src/main/res/layout/activity_user_information.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_vertical.xml" value="0.1" />
         <entry key="app/src/main/res/layout/app_bar_home.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/barmenu.xml" value="0.1" />

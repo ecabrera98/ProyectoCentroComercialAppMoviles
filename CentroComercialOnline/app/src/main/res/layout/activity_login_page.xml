@@ -45,7 +45,7 @@
         android:layout_height="49dp"
         android:layout_marginTop="324dp"
         android:layout_marginEnd="16dp"
-        android:hint="Email o Nombre de Usuario"
+        android:hint="Correo Electrónico"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:selectAllOnFocus="true"
@@ -59,7 +59,7 @@
         android:layout_height="51dp"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="24dp"
-        android:hint="@string/prompt_password"
+        android:hint="Contraseña"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
@@ -100,37 +100,28 @@
         app:layout_constraintVertical_bias="0.3" />
 
     <ImageView
-        android:id="@+id/imageViewTwitter2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="108dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/reg_strese_1"
-        app:srcCompat="@drawable/iconstwitter"
-        tools:ignore="ImageContrastCheck" />
-
-    <ImageView
         android:id="@+id/imageViewFacebook2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_width="63dp"
+        android:layout_height="63dp"
+        android:layout_marginBottom="48dp"
         app:layout_constraintBottom_toTopOf="@+id/email1"
         app:layout_constraintEnd_toStartOf="@+id/imageViewGoogle2"
-        app:layout_constraintHorizontal_bias="0.524"
-        app:layout_constraintStart_toEndOf="@+id/imageViewTwitter2"
+        app:layout_constraintHorizontal_bias="0.754"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reg_strese_1"
-        app:layout_constraintVertical_bias="0.166"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/iconsfacebook" />
 
     <ImageView
         android:id="@+id/imageViewGoogle2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="110dp"
-        android:layout_marginEnd="56dp"
+        android:layout_width="57dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="128dp"
+        app:layout_constraintBottom_toTopOf="@+id/email1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/reg_strese_1"
+        app:layout_constraintTop_toBottomOf="@+id/reg_strese_1"
+        app:layout_constraintVertical_bias="0.152"
         app:srcCompat="@drawable/iconsgoogle" />
 
     <ImageView

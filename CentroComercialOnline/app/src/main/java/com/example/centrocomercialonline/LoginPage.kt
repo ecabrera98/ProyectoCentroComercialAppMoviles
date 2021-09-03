@@ -48,10 +48,7 @@ class LoginPage : AppCompatActivity() {
                             password.text.toString()
                         ).addOnCompleteListener {
                             if (it.isSuccessful) {
-                                showUserInformation(
-                                    it.result?.user?.email ?: "",
-                                    ProviderType.BASIC
-                                )
+                                irActividad(Tiendas::class.java)
                             } else {
                                 showAlert()
                             }
@@ -81,7 +78,7 @@ class LoginPage : AppCompatActivity() {
                             FirebaseAuth.getInstance().signInWithCredential(credential)
                                 .addOnCompleteListener {
                                     if (it.isSuccessful) {
-                                        showUserInformation(it.result?.user?.email ?: "", ProviderType.FACEBOOK)
+                                        irActividad(Tiendas::class.java)
                                     } else {
                                         showAlert()
                                     }
@@ -90,7 +87,6 @@ class LoginPage : AppCompatActivity() {
                     }
 
                     override fun onCancel() {
-
                     }
 
                     override fun onError(error: FacebookException?) {
@@ -99,20 +95,7 @@ class LoginPage : AppCompatActivity() {
 
                 })
         }
-        session()
 
-    }
-
-    private fun session(){
-        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
-        val email =prefs.getString("email",null)
-        val provider = prefs.getString("provider",null)
-        val registrar = findViewById<ConstraintLayout>(R.id.containerRegistrar)
-
-        if(email != null && provider !=null){
-            registrar.visibility = View.VISIBLE
-            showUserInformation(email, ProviderType.valueOf(provider))
-        }
     }
 
 
@@ -125,12 +108,50 @@ class LoginPage : AppCompatActivity() {
         dialog.show()
     }
 
-    fun showUserInformation(email:String, provider: ProviderType){
-        val UserInformationIntent: Intent = Intent(this, PerfilUsuario::class.java).apply {
-            putExtra("email",email)
-            putExtra("provider",provider.name)
+
+
+
+    fun irActividad(
+        clase: Class<*>,
+        parametros: ArrayList<Pair<String, *>>? = null,
+        codigo: Int? = null
+    ) {
+        val intentExplicito = Intent(
+            this,
+            clase
+        )
+        parametros?.forEach {
+            val nombreVariable = it.first
+            val valorVariable: Any? = it.second
+
+            when (it.second) {
+                is String -> {
+                    valorVariable as String
+                    intentExplicito.putExtra(nombreVariable, valorVariable)
+                }
+                is Parcelable -> {
+                    valorVariable as Parcelable
+                    intentExplicito.putExtra(nombreVariable, valorVariable)
+                }
+                is Int -> {
+                    valorVariable as Int
+                    intentExplicito.putExtra(nombreVariable, valorVariable)
+                }
+                else -> {
+                    valorVariable as String
+                    intentExplicito.putExtra(nombreVariable, valorVariable)
+                }
+            }
+
+
         }
-        startActivity(UserInformationIntent)
+
+        if (codigo != null) {
+            startActivityForResult(intentExplicito, codigo)
+        } else {
+            startActivity(intentExplicito)
+
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
@@ -144,7 +165,7 @@ class LoginPage : AppCompatActivity() {
                     val credential = GoogleAuthProvider.getCredential(account.idToken, null)
                     FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
                         if(it.isSuccessful){
-                            showUserInformation(account.email ?: "",ProviderType.GOOGLE)
+                            irActividad(Tiendas::class.java)
                         }else{
                             showAlert()
                         }

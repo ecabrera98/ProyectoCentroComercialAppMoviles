@@ -8,8 +8,9 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.centrocomercialonline.dto.ProductosDto
 
-class AdapterElect (var itemList: List<ProductosDao>?) : RecyclerView.Adapter<AdapterElect.MyViewHolder>() {
+class AdapterElect (var itemList: List<ProductosDto>?) : RecyclerView.Adapter<AdapterElect.MyViewHolder>() {
     //    private var itemList: List<ItemModel>? = null
     private var clickListener: ClickListener? = null
     /*fun MyAdapter(itemList: List<ItemModel>?) {
@@ -40,7 +41,7 @@ class AdapterElect (var itemList: List<ProductosDao>?) : RecyclerView.Adapter<Ad
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val row: ProductosDao = itemList!![position]
+        val row: ProductosDto = itemList!![position]
         holder.title.setText(row.title)
         holder.subtitle.setText(row.subtitle)
         holder.icon.setImageResource(row.imageId)

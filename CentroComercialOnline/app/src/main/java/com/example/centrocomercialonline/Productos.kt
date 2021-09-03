@@ -12,13 +12,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.centrocomercialonline.dto.ProductosDto
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import com.jama.carouselview.CarouselView
 import com.jama.carouselview.enums.IndicatorAnimationType
 import com.jama.carouselview.enums.OffsetType
 
 class Productos : AppCompatActivity(),  AdapterElect.ClickListener {
-    private val itemList: MutableList<ProductosDao> = mutableListOf()
+    private val itemList: MutableList<ProductosDto> = mutableListOf()
     private var recyclerView: RecyclerView? = null
     var adapter: AdapterElect? = null
 
@@ -85,11 +86,11 @@ class Productos : AppCompatActivity(),  AdapterElect.ClickListener {
 
 
     private fun prepareItem() {
-        itemList.add(ProductosDao(R.drawable.equipo1, "Equipo", "Prrecio:$ 300"))
-        itemList.add(ProductosDao(R.drawable.tv1, "TV", "Precio:$ 1500"))
-        itemList.add(ProductosDao(R.drawable.equipo1, "Equipo2", "Precio: $ 700"))
-        itemList.add(ProductosDao(R.drawable.tv1, "TV2", "Pricio: $ 300"))
-        itemList.add(ProductosDao(R.drawable.equipo2, "Equipo3", "Pricio: $ 200"))
+        itemList.add(ProductosDto(R.drawable.equipo1, "Equipo", "Prrecio:$ 300"))
+        itemList.add(ProductosDto(R.drawable.tv1, "TV", "Precio:$ 1500"))
+        itemList.add(ProductosDto(R.drawable.equipo1, "Equipo2", "Precio: $ 700"))
+        itemList.add(ProductosDto(R.drawable.tv1, "TV2", "Pricio: $ 300"))
+        itemList.add(ProductosDto(R.drawable.equipo2, "Equipo3", "Pricio: $ 200"))
     }
 
     override fun itemClicked(view: View?, position: Int) {

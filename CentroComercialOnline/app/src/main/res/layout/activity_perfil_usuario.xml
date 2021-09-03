@@ -62,12 +62,12 @@
 
     <TextView
         android:id="@+id/txtCorreoUsuario"
-        android:layout_width="196dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="209dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="28dp"
         android:text="Correo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.841"
+        app:layout_constraintHorizontal_bias="0.896"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNombreUsuario" />
 

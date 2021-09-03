@@ -48,7 +48,7 @@
         android:layout_width="309dp"
         android:layout_height="49dp"
         android:layout_marginTop="284dp"
-        android:hint="@string/prompt_email"
+        android:hint="Correo Electrónico"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:selectAllOnFocus="true"
@@ -56,30 +56,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/username"
-        android:layout_width="309dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="72dp"
-        android:hint="Nombre de Usuario"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp"
-        android:selectAllOnFocus="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/email" />
-
-    <EditText
         android:id="@+id/password"
         android:layout_width="308dp"
         android:layout_height="49dp"
-        android:layout_marginTop="24dp"
-        android:hint="@string/prompt_password"
+        android:layout_marginTop="28dp"
+        android:hint="Contraseña"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <Button
         android:id="@+id/registrarse1"
@@ -112,34 +100,23 @@
         app:layout_constraintVertical_bias="0.3" />
 
     <ImageView
-        android:id="@+id/imageViewTwitter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="84dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/reg_strese_"
-        app:srcCompat="@drawable/iconstwitter" />
-
-    <ImageView
         android:id="@+id/imageViewFacebook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="85dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageViewGoogle"
-        app:layout_constraintHorizontal_bias="0.513"
-        app:layout_constraintStart_toEndOf="@+id/imageViewTwitter"
-        app:layout_constraintTop_toTopOf="@+id/reg_strese_"
+        android:layout_width="63dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reg_strese_"
         app:srcCompat="@drawable/iconsfacebook" />
 
     <ImageView
         android:id="@+id/imageViewGoogle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="80dp"
+        android:layout_width="59dp"
+        android:layout_height="59dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/reg_strese_"
         app:srcCompat="@drawable/iconsgoogle" />
 
     <CheckBox
@@ -167,22 +144,12 @@
         android:id="@+id/imageView9"
         android:layout_width="55dp"
         android:layout_height="48dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="11dp"
         app:layout_constraintEnd_toStartOf="@+id/password"
-        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10"
-        app:srcCompat="@drawable/iconscandado" />
-
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="61dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/username"
         app:layout_constraintTop_toBottomOf="@+id/imageView8"
-        app:srcCompat="@drawable/iconsusuario" />
+        app:srcCompat="@drawable/iconscandado" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,8 @@ package com.example.centrocomercialonline
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -10,20 +12,25 @@ import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.centrocomercialonline.dto.BAuthUsuario
+import com.example.centrocomercialonline.dto.BUsuarioFirebase
+import com.example.centrocomercialonline.dto.UsuarioDto
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import com.firebase.ui.auth.IdpResponse
+import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.auth.api.signin.GoogleSignInResult
 import com.google.android.gms.common.api.ApiException
-import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import kotlinx.coroutines.*
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+
 
 class Registrar : AppCompatActivity() {
     private val GOOGLE_SIGN_IN = 100
@@ -39,16 +46,15 @@ class Registrar : AppCompatActivity() {
 
         var email = findViewById<EditText>(R.id.email)
         var password = findViewById<EditText>(R.id.password)
-        var username = findViewById<EditText>(R.id.username)
 
 
         botonIrRegistrarDatos.setOnClickListener {
-            if(email.text.isNotEmpty() && password.text.isNotEmpty() && username.text.isNotEmpty()){
+            if(email.text.isNotEmpty() && password.text.isNotEmpty()){
                 FirebaseAuth.getInstance()
                     .createUserWithEmailAndPassword(email.text.toString(),
                     password.text.toString()).addOnCompleteListener{
                         if(it.isSuccessful){
-                            showUserInformation(it.result?.user?.email ?: "",ProviderType.BASIC)
+                            showUserInformation(it.result?.user?.email ?: "")
                         }else{
                             showAlert()
                         }
@@ -78,7 +84,7 @@ class Registrar : AppCompatActivity() {
                         FirebaseAuth.getInstance().signInWithCredential(credential)
                             .addOnCompleteListener {
                                 if (it.isSuccessful) {
-                                    showUserInformation(it.result?.user?.email ?: "", ProviderType.FACEBOOK)
+                                    showUserInformation(it.result?.user?.email ?: "")
                                 } else {
                                     showAlert()
                                 }
@@ -97,26 +103,8 @@ class Registrar : AppCompatActivity() {
             })
         }
 
-        session()
-
-
-
-
-
     }
 
-
-    private fun session(){
-        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
-        val email =prefs.getString("email",null)
-        val provider = prefs.getString("provider",null)
-        val registrar = findViewById<ConstraintLayout>(R.id.containerRegistrar)
-
-        if(email != null && provider !=null){
-            registrar.visibility = View.VISIBLE
-            showUserInformation(email, ProviderType.valueOf(provider))
-        }
-    }
 
 
     fun showAlert(){
@@ -128,13 +116,13 @@ class Registrar : AppCompatActivity() {
         dialog.show()
     }
 
-    fun showUserInformation(email:String, provider: ProviderType){
-        val UserInformationIntent: Intent = Intent(this, PerfilUsuario::class.java).apply {
+    fun showUserInformation(email:String){
+        val UserInformationIntent: Intent = Intent(this, UserInformation::class.java).apply {
             putExtra("email",email)
-            putExtra("provider",provider.name)
         }
         startActivity(UserInformationIntent)
     }
+
 
     override fun onStart(){
         super.onStart()
@@ -153,7 +141,7 @@ class Registrar : AppCompatActivity() {
                     val credential = GoogleAuthProvider.getCredential(account.idToken, null)
                     FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
                         if(it.isSuccessful){
-                            showUserInformation(account.email ?: "",ProviderType.GOOGLE)
+                            showUserInformation(it.result?.user?.email ?: "")
                         }else{
                             showAlert()
                         }
@@ -165,6 +153,9 @@ class Registrar : AppCompatActivity() {
         }
 
     }
+
+
+
 
 
 

@@ -5,17 +5,19 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
-import com.facebook.login.LoginManager
+import com.example.centrocomercialonline.dto.BAuthUsuario
+import com.example.centrocomercialonline.dto.BUsuarioFirebase
+import com.example.centrocomercialonline.dto.UsuarioDto
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
-enum class ProviderType{
-    BASIC,
-    GOOGLE,
-    FACEBOOK
-}
+
 class PerfilUsuario : AppCompatActivity() {
 
     private val title by lazy { findViewById<TextView>(R.id.title1) }
@@ -44,42 +46,43 @@ class PerfilUsuario : AppCompatActivity() {
             menu.showBadge(R.id.perfil, 32)
         }
 
+        setearUsuarioFirebase()
 
-        //setup
-        val bundle = intent.extras
-        val email =bundle?.getString("email")
-        val provider = bundle?.getString("provider")
-        setup(email?: "",provider ?: "")
+        val botonCerrarSesion = findViewById<Button>(R.id.btnCerrarSesion)
+        botonCerrarSesion.setOnClickListener{
+            val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
+            prefs.clear()
+            prefs.apply()
+            FirebaseAuth.getInstance().signOut()
+            onBackPressed()
+            irActividad(MainActivity::class.java)
 
-        //Guardado de datos
-        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
-        prefs.putString("email",email)
-        prefs.putString("provider",provider)
-        prefs.apply()
+        }
 
     }
 
-    private fun setup(correo: String, provider: String) {
-        val email = findViewById<TextView>(R.id.txtCorreoUsuario)
-        val username = findViewById<TextView>(R.id.txtNombreUsuario)
-        val botonCerrarSesion = findViewById<Button>(R.id.btnCerrarSesion)
-        email.text = correo
-        username.text = provider
 
-      botonCerrarSesion.setOnClickListener{
+    fun setearUsuarioFirebase(){
+        val instanciaAuth = FirebaseAuth.getInstance()
+        val usuarioLocal = instanciaAuth.currentUser
+        val editTextEmail = findViewById<TextView>(R.id.txtCorreoUsuario)
+        val editTextNombreUsuario = findViewById<TextView>(R.id.txtNombreUsuario)
 
-      val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
-      prefs.clear()
-      prefs.apply()
-      if(provider == ProviderType.FACEBOOK.name){
-      LoginManager.getInstance().logOut()
-      }
-          FirebaseAuth.getInstance().signOut()
-          onBackPressed()
-          irActividad(LoginPage::class.java)
-
-      }
-  }
+        if (usuarioLocal != null) {
+            if(usuarioLocal.email != null){
+                val db = Firebase.firestore
+                db.collection("usuarios").document(usuarioLocal.email.toString()).get()
+                    .addOnSuccessListener {
+                        editTextEmail.setText(it.get("Email") as String?)
+                        editTextNombreUsuario.setText(it.get("Nombre") as String?)
+                        Log.i("firestore-usuarios", "Se estrajó el usuario con éxito")
+                    }
+                    .addOnFailureListener {
+                        Log.i("firestore-usuarios", "Falló: $it")
+                    }
+            }
+        }
+    }
 
 
     fun irActividad(
