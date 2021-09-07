@@ -8,19 +8,15 @@
 
     <include
         layout="@layout/activity_horizontal"
-        android:layout_width="407dp"
-        android:layout_height="87dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carouselViewGanga4"
-        tools:layout_editor_absoluteX="4dp" />
+         />
 
     <com.jama.carouselview.CarouselView
         android:id="@+id/carouselViewGanga1"
         android:layout_width="358dp"
         android:layout_height="115dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintHorizontal_bias="0.32"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:spacing="20">
@@ -29,35 +25,141 @@
     </com.jama.carouselview.CarouselView>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
+        android:layout_marginStart="250dp"
+        android:text="Mas"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_categoria1"
+        app:layout_constraintStart_toEndOf="@+id/tv_categoria1"
+        app:layout_constraintTop_toTopOf="@+id/tv_categoria1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_categoria1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:text="TextView"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/carouselViewGanga1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.875" />
+
+
+    <TextView
+        android:id="@+id/txv_titulo_tienda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
         android:text="LA GANGA"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
         android:text="Lo más nuevo y novedoso: Hoy"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tv_categoria2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/carouselViewGanga2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="250dp"
+        android:text="Mas"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_categoria2"
+        app:layout_constraintStart_toEndOf="@+id/tv_categoria2"
+        app:layout_constraintTop_toTopOf="@+id/tv_categoria2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_categoria3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/carouselViewGanga3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="250dp"
+        android:text="Mas"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_categoria3"
+        app:layout_constraintStart_toEndOf="@+id/tv_categoria3"
+        app:layout_constraintTop_toTopOf="@+id/tv_categoria3"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.jama.carouselview.CarouselView
+        android:id="@+id/carouselViewGanga4"
+        android:layout_width="358dp"
+        android:layout_height="115dp"
+        android:layout_marginTop="470dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.301"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:spacing="20" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="250dp"
+        android:text="Mas"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_categoria4"
+        app:layout_constraintStart_toEndOf="@+id/tv_categoria4"
+        app:layout_constraintTop_toTopOf="@+id/tv_categoria4"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_categoria4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/carouselViewGanga4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.jama.carouselview.CarouselView
         android:id="@+id/carouselViewGanga2"
         android:layout_width="358dp"
         android:layout_height="115dp"
-        android:layout_marginTop="152dp"
+        android:layout_marginTop="176dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.339"
+        app:layout_constraintHorizontal_bias="0.32"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:spacing="20" />
@@ -66,25 +168,14 @@
         android:id="@+id/carouselViewGanga3"
         android:layout_width="358dp"
         android:layout_height="115dp"
-        android:layout_marginTop="284dp"
+        android:layout_marginTop="324dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.315"
+        app:layout_constraintHorizontal_bias="0.32"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:spacing="20">
 
     </com.jama.carouselview.CarouselView>
-
-    <com.jama.carouselview.CarouselView
-        android:id="@+id/carouselViewGanga4"
-        android:layout_width="358dp"
-        android:layout_height="115dp"
-        android:layout_marginTop="420dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.36"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:spacing="20" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

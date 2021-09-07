@@ -22,7 +22,7 @@ class CategoriasRopa : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_categorias_elect)
+        setContentView(R.layout.activity_categorias_ropa)
 
         lastColor = (container.background as ColorDrawable).color
 
@@ -43,12 +43,23 @@ class CategoriasRopa : AppCompatActivity() {
             menu.showBadge(R.id.home)
             menu.showBadge(R.id.perfil, 32)
         }
+        val nombreTienda = findViewById<TextView>(R.id.txv_titulo_tienda)
+        nombreTienda.setText("DE PRATI")
+
+        val categoriaText1 = findViewById<TextView>(R.id.tv_categoria1)
+        categoriaText1.setText("ZAPATOS")
+        val categoriaText2 = findViewById<TextView>(R.id.tv_categoria2)
+        categoriaText2.setText("CAMISETAS")
+        val categoriaText3 = findViewById<TextView>(R.id.tv_categoria3)
+        categoriaText3.setText("JEANS")
+        val categoriaText4 = findViewById<TextView>(R.id.tv_categoria4)
+        categoriaText4.setText("CHAQUETAS")
 
         val imagesElect = arrayListOf(R.drawable.elec1,R.drawable.elec2, R.drawable.elec3, R.drawable.equipo1)
-        val electTitle1 = arrayListOf("ZAPATOS","Deportivos","Casuales","Botas...")
-        val electTitle2 = arrayListOf("CAMISETAS:","Blusas","Busos","Personalizadas...")
-        val electTitle3 = arrayListOf("JEANS:","Caballeros","Damas","Niños...")
-        val electTitle4 = arrayListOf("CHAQUETAS:","Casuales","Cuero","Impermeables...")
+        val electTitle1 = arrayListOf("Deportivos","Casuales","Tacones","Botas...")
+        val electTitle2 = arrayListOf("Blusas","Busos","Camisas","Personalizadas...")
+        val electTitle3 = arrayListOf("Caballeros","Damas","Niños","Unisex...")
+        val electTitle4 = arrayListOf("Casuales","Cuero","Lana","Impermeables...")
 
         val carouselViewElect1 = findViewById<CarouselView>(R.id.carouselViewGanga1)
         val carouselViewElect2 = findViewById<CarouselView>(R.id.carouselViewGanga2)

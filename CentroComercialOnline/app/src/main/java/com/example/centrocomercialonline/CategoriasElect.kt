@@ -21,7 +21,7 @@ class CategoriasElect : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_categorias_elect)
+        setContentView(R.layout.activity_categorias_ropa)
 
         menu.setOnItemSelectedListener { id ->
             val option = when (id) {
@@ -41,11 +41,23 @@ class CategoriasElect : AppCompatActivity(){
             menu.showBadge(R.id.perfil, 32)
         }
 
+        val nombreTienda = findViewById<TextView>(R.id.txv_titulo_tienda)
+        nombreTienda.setText("LA GANGA")
+
+        val categoriaText1 = findViewById<TextView>(R.id.tv_categoria1)
+        categoriaText1.setText("LINEA BLANCA")
+        val categoriaText2 = findViewById<TextView>(R.id.tv_categoria2)
+        categoriaText2.setText("AUDIO Y VIDEO")
+        val categoriaText3 = findViewById<TextView>(R.id.tv_categoria3)
+        categoriaText3.setText("ENTRETENIMIENTO")
+        val categoriaText4 = findViewById<TextView>(R.id.tv_categoria4)
+        categoriaText4.setText("MOVILIDAD")
+
         val imagesElect = arrayListOf(R.drawable.elec1,R.drawable.elec2, R.drawable.elec3, R.drawable.equipo1)
-        val electTitle1 = arrayListOf("LINEA BLANCA:", "Cocinas", "Refrigeradores", "Y algo más...",)
-        val electTitle2 = arrayListOf("AUDIO Y VIDEO:" ,"Equipos de sonido", "mp3 ipods","smarttv con android tv...")
-        val electTitle3 = arrayListOf("ENTRETENIMIENTO:","Play Station 3,4", "XBOX" ,"PSP...")
-        val electTitle4 = arrayListOf("MOVILIDAD:","bicicletas" ,"motocicletas...", "Variedad de precios...")
+        val electTitle1 = arrayListOf("Cocinas", "Refrigeradores","Licuadora", "Y algo más...",)
+        val electTitle2 = arrayListOf("Equipos de sonido", "Mp3 ipods","Audifonos","smarttv con android tv...")
+        val electTitle3 = arrayListOf("Play Station 3", "XBOX" ,"Play Station 4","PSP...")
+        val electTitle4 = arrayListOf("Bicicletas" ,"Motocicletas","Motonetas", "Variedad de precios...")
 
         val carouselViewElect1 = findViewById<CarouselView>(R.id.carouselViewGanga1)
         val carouselViewElect2 = findViewById<CarouselView>(R.id.carouselViewGanga2)

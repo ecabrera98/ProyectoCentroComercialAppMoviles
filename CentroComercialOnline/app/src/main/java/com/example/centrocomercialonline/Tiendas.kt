@@ -48,42 +48,47 @@ class Tiendas : AppCompatActivity(){
             menu.showBadge(R.id.perfil, 32)
         }
 
+        val imageView1 = findViewById<ImageView>(R.id.img_tienda1)
+        imageView1.setOnClickListener {irActividad(CategoriasElect::class.java) }
 
-        val imagesElect = arrayListOf(R.drawable.elec1,R.drawable.elec2, R.drawable.elec3, R.drawable.equipo1)
-        val carouselViewElect = findViewById<CarouselView>(R.id.carouselViewTiendas1)
+        val imageView2 = findViewById<ImageView>(R.id.img_tienda2)
+        imageView2.setOnClickListener {irActividad(CategoriasRopa::class.java) }
 
-        val imagesRopa = arrayListOf(R.drawable.ropa2,R.drawable.ropa3, R.drawable.ropa1, R.drawable.ropa3)
-        val carouselViewRopa = findViewById<CarouselView>(R.id.carouselViewTiendas2)
-
-        carouselViewElect.apply {
-            size = imagesElect.size
-            autoPlay = true
-            autoPlayDelay = 3000
-            resource = R.layout.center_carousel_item
-            indicatorAnimationType = IndicatorAnimationType.COLOR
-            carouselOffset = OffsetType.CENTER
-            setCarouselViewListener { view, position ->
-                val imageView1 = view.findViewById<ImageView>(R.id.imageView)
-                imageView1.setImageDrawable(resources.getDrawable(imagesElect[position]))
-                imageView1.setOnClickListener {irActividad(CategoriasElect::class.java) }
-            }
-            show()
-        }
-
-        carouselViewRopa.apply {
-            size = imagesRopa.size
-            autoPlay = true
-            autoPlayDelay = 3000
-            resource = R.layout.center_carousel_item
-            indicatorAnimationType = IndicatorAnimationType.THIN_WORM
-            carouselOffset = OffsetType.CENTER
-            setCarouselViewListener { view, position ->
-                val imageView2 = view.findViewById<ImageView>(R.id.imageView)
-                imageView2.setImageDrawable(resources.getDrawable(imagesRopa[position]))
-                imageView2.setOnClickListener {irActividad(CategoriasRopa::class.java) }
-            }
-            show()
-        }
+//        val imagesElect = arrayListOf(R.drawable.elec1,R.drawable.elec2, R.drawable.elec3, R.drawable.equipo1)
+//        val carouselViewElect = findViewById<CarouselView>(R.id.carouselViewTiendas1)
+//
+//        val imagesRopa = arrayListOf(R.drawable.ropa2,R.drawable.ropa3, R.drawable.ropa1, R.drawable.ropa3)
+//        val carouselViewRopa = findViewById<CarouselView>(R.id.carouselViewTiendas2)
+//
+//        carouselViewElect.apply {
+//            size = imagesElect.size
+//            autoPlay = true
+//            autoPlayDelay = 3000
+//            resource = R.layout.center_carousel_item
+//            indicatorAnimationType = IndicatorAnimationType.COLOR
+//            carouselOffset = OffsetType.CENTER
+//            setCarouselViewListener { view, position ->
+//                val imageView1 = view.findViewById<ImageView>(R.id.imageView)
+//                imageView1.setImageDrawable(resources.getDrawable(imagesElect[position]))
+//                imageView1.setOnClickListener {irActividad(CategoriasElect::class.java) }
+//            }
+//            show()
+//        }
+//
+//        carouselViewRopa.apply {
+//            size = imagesRopa.size
+//            autoPlay = true
+//            autoPlayDelay = 3000
+//            resource = R.layout.center_carousel_item
+//            indicatorAnimationType = IndicatorAnimationType.THIN_WORM
+//            carouselOffset = OffsetType.CENTER
+//            setCarouselViewListener { view, position ->
+//                val imageView2 = view.findViewById<ImageView>(R.id.imageView)
+//                imageView2.setImageDrawable(resources.getDrawable(imagesRopa[position]))
+//                imageView2.setOnClickListener {irActividad(CategoriasRopa::class.java) }
+//            }
+//            show()
+//        }
 
 
     }
