@@ -1,56 +1,50 @@
 package com.example.centrocomercialonline
 
-import android.app.AlertDialog
 import android.content.Intent
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
 import android.view.View
-import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.TextView
-import androidx.appcompat.widget.Toolbar
-import androidx.core.graphics.component1
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.centrocomercialonline.dto.ProductosDto
-import com.ismaeldivita.chipnavigation.ChipNavigationBar
+import com.example.centrocomercialonline.dto.TarjetaDto
 
-class DetalleProductos : AppCompatActivity() {
+class MetodoPago : AppCompatActivity(),AdapterMetodoPago.ClickListener {
+    private val itemList: MutableList<TarjetaDto> = mutableListOf()
+    private var recyclerView: RecyclerView? = null
+    var adapter: AdapterMetodoPago? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detalle_productos)
+        setContentView(R.layout.activity_metodo_pago)
 
-        val Producto = intent.getIntExtra("ItemPosition",0)
-        Log.e("position :", "${Producto}")
+        recyclerView = findViewById(R.id.rcv_tarjeta)
+        prepareItem()
+        adapter = AdapterMetodoPago(itemList)
 
-        val itemList: MutableList<ProductosDto> = mutableListOf()
-        itemList.add(ProductosDto(R.drawable.equipo1, "Equipo", "Prrecio:$ 300"))
-        itemList.add(ProductosDto(R.drawable.tv1, "TV", "Precio:$ 1500"))
+        recyclerView?.layoutManager = LinearLayoutManager(this)
+        recyclerView?.itemAnimator = DefaultItemAnimator()
+        recyclerView?.adapter = adapter
 
-
-        val imagen = findViewById<ImageView>(R.id.iv_food)
-        imagen.setImageResource(itemList[Producto].imageId)
-        val tienda = findViewById<TextView>(R.id.tv_title_tienda)
-
-        val categoria = findViewById<TextView>(R.id.tv_title_categoria)
-        val producto = findViewById<TextView>(R.id.tv_title_producto)
-        producto.setText(itemList[Producto].title)
-        val detalle = findViewById<TextView>(R.id.tv_title_descripcion_producto)
-        val precio = findViewById<TextView>(R.id.tv_price)
-        precio.setText(itemList[Producto].subtitle)
-
-
-        Log.e("position :", "${itemList[Producto]}")
-
-        val carito = findViewById<Button>(R.id.tv_cart)
-        carito.setOnClickListener {
-            irActividad(Carrito::class.java)
+        val imgCard = findViewById<ImageButton>(R.id.img_añadir)
+        imgCard.setOnClickListener {
+            irActividad(AgregarTarjeta::class.java)
         }
+
+
     }
 
+    private fun prepareItem() {
+        itemList.add(TarjetaDto("1758412365805289", "Araceli", "05/24","149"))
+
+    }
+
+    override fun itemClicked (envio: ImageButton) { }
 
     fun irActividad(
         clase: Class<*>,
@@ -94,5 +88,6 @@ class DetalleProductos : AppCompatActivity() {
 
         }
     }
+
 
 }

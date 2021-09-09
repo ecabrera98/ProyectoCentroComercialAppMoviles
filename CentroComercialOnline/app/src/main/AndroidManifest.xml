@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CentroComercialOnline">
         <activity
+            android:name=".AgregarTarjeta"
+            android:exported="true" />
+        <activity
+            android:name=".MetodoPago"
+            android:exported="true" />
+        <activity
             android:name=".BuscarProducto"
             android:exported="true" />
         <activity

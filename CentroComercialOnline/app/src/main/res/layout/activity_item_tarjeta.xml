@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="235dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_tarjeta"
+        android:layout_width="match_parent"
+        android:layout_height="205dp"
+        android:layout_margin="15dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="112dp"
+            android:layout_height="81dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="275dp"
+            android:layout_marginBottom="131dp"
+            app:srcCompat="@drawable/ic_visa" />
+
+        <TextView
+            android:id="@+id/txv_numero_tarjeta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="151dp"
+            android:layout_marginBottom="103dp"
+            android:text="2342432343253222" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="146dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/txv_fecha_expiración"
+            android:layout_alignEnd="@+id/txv_fecha_expiración"
+            android:layout_marginEnd="-34dp"
+            android:layout_marginBottom="22dp"
+            android:text="Fecha de Expiración" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="121dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/txv_nombre_tarjeta"
+            android:layout_alignEnd="@+id/txv_nombre_tarjeta"
+            android:layout_marginEnd="-51dp"
+            android:layout_marginBottom="22dp"
+            android:text="Titular de la Tarjeta" />
+
+        <TextView
+            android:id="@+id/txv_fecha_expiración"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="45dp"
+            android:layout_marginBottom="22dp"
+            android:text="09/25" />
+
+        <TextView
+            android:id="@+id/txv_nombre_tarjeta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="34dp"
+            android:layout_marginBottom="22dp"
+            android:text="Joselyn" />
+    </RelativeLayout>
+</LinearLayout>

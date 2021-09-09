@@ -94,17 +94,10 @@ class Productos : AppCompatActivity(),  AdapterElect.ClickListener {
     }
 
     override fun itemClicked(view: View?, position: Int) {
-        when (position) {
-            0 -> SharedPreferenceUtils(this).setCategoryItem("flower")
-            1 -> SharedPreferenceUtils(this).setCategoryItem("fruit")
-            2 -> SharedPreferenceUtils(this).setCategoryItem("leaves")
-            3 -> SharedPreferenceUtils(this).setCategoryItem("root")
-            4 -> SharedPreferenceUtils(this).setCategoryItem("salad")
-            else -> Log.e("position :", position.toString())
-        }
-        startActivity(Intent(this@Productos, DetalleProductos::class.java).putExtra("ItemPosition ", position))
-    }
 
+        irActividad(DetalleProductos::class.java, arrayListOf(Pair("ItemPosition",position)))
+
+    }
 
     fun irActividad(
         clase: Class<*>,
