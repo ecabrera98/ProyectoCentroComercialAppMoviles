@@ -42,8 +42,8 @@ class AdapterElect (var itemList: List<ProductosDto>?) : RecyclerView.Adapter<Ad
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val row: ProductosDto = itemList!![position]
-        holder.title.setText(row.title)
-        holder.subtitle.setText(row.subtitle)
+        holder.title.setText(row.nombre_producto)
+        holder.subtitle.setText(row.precio_producto)
         holder.icon.setImageResource(row.imageId)
         holder.main.setOnClickListener {
             Log.e("Position adapter:", position.toString())

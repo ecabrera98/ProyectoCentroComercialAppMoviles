@@ -8,13 +8,17 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.centrocomercialonline.dto.ProductosDto
 import com.example.centrocomercialonline.dto.TarjetaDto
+import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
 class MetodoPago : AppCompatActivity(),AdapterMetodoPago.ClickListener {
+    private val title by lazy { findViewById<TextView>(R.id.title1) }
+    private val menu by lazy { findViewById<ChipNavigationBar>(R.id.bottom_menu1) }
     private val itemList: MutableList<TarjetaDto> = mutableListOf()
     private var recyclerView: RecyclerView? = null
     var adapter: AdapterMetodoPago? = null
@@ -22,6 +26,24 @@ class MetodoPago : AppCompatActivity(),AdapterMetodoPago.ClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_metodo_pago)
+
+        menu.setOnItemSelectedListener { id ->
+            val option = when (id) {
+                R.id.home -> irActividad(Tiendas::class.java)  to "Inicio"
+                R.id.buscar -> R.color.colorSecundary to "Buscar"
+                R.id.carrito -> irActividad(Carrito::class.java) to "Carrito"
+                R.id.perfil -> irActividad(PerfilUsuario::class.java)  to "Perfil"
+                else -> R.color.white to ""
+            }
+
+            title.text = option.second
+        }
+
+
+        if (savedInstanceState == null) {
+            menu.showBadge(R.id.home)
+            menu.showBadge(R.id.perfil, 32)
+        }
 
         recyclerView = findViewById(R.id.rcv_tarjeta)
         prepareItem()

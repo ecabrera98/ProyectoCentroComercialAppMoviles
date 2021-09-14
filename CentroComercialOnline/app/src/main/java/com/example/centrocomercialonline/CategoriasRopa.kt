@@ -5,9 +5,15 @@ import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.centrocomercialonline.dto.ProductosDto
+import com.example.centrocomercialonline.dto.UsuarioDto
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import com.jama.carouselview.CarouselView
 
@@ -74,7 +80,22 @@ class CategoriasRopa : AppCompatActivity() {
             setCarouselViewListener { view, position ->
                 val imageView1 = view.findViewById<ImageView>(R.id.imageView)
                 imageView1.setImageDrawable(resources.getDrawable(imagesElect[position]))
-                imageView1.setOnClickListener {irActividad(Productos::class.java) }
+                imageView1.setOnClickListener {
+                    val db = Firebase.firestore
+                    val citiesRef = db.collection("productos")
+                    citiesRef
+                        .whereEqualTo("descripcion_categoria", "Zapatos")
+                        .get()
+                        .addOnSuccessListener {
+                            for(ciudad in it){
+                                Log.i("consultas", "==array-contains ${ciudad.data}")
+                            }
+                        }
+                        .addOnFailureListener{
+                            Log.i("consultas", "fallo el seteo de productos")
+                        }
+                    irActividad(Productos::class.java)
+                }
                 val textView = view.findViewById<TextView>(R.id.textViewTitle)
                 textView.text = electTitle1[position]
             }
@@ -89,7 +110,22 @@ class CategoriasRopa : AppCompatActivity() {
             setCarouselViewListener { view, position ->
                 val imageView2 = view.findViewById<ImageView>(R.id.imageView)
                 imageView2.setImageDrawable(resources.getDrawable(imagesElect[position]))
-                imageView2.setOnClickListener {irActividad(Productos::class.java) }
+                imageView2.setOnClickListener {
+                    val db = Firebase.firestore
+                    val citiesRef = db.collection("productos")
+                    citiesRef
+                        .whereEqualTo("descripcion_categoria", "Camisetas")
+                        .get()
+                        .addOnSuccessListener {
+                            for(ciudad in it){
+                                Log.i("consultas", "==array-contains ${ciudad.data}")
+                            }
+                        }
+                        .addOnFailureListener{
+                            Log.i("consultas", "fallo el seteo de productos")
+                        }
+                    irActividad(Productos::class.java)
+                }
                 val textView = view.findViewById<TextView>(R.id.textViewTitle)
                 textView.text = electTitle2[position]
             }
@@ -104,7 +140,22 @@ class CategoriasRopa : AppCompatActivity() {
             setCarouselViewListener { view, position ->
                 val imageView1 = view.findViewById<ImageView>(R.id.imageView)
                 imageView1.setImageDrawable(resources.getDrawable(imagesElect[position]))
-                imageView1.setOnClickListener {irActividad(Productos::class.java) }
+                imageView1.setOnClickListener {
+                    val db = Firebase.firestore
+                    val citiesRef = db.collection("productos")
+                    citiesRef
+                        .whereEqualTo("descripcion_categoria", "Jeans")
+                        .get()
+                        .addOnSuccessListener {
+                            for(ciudad in it){
+                                Log.i("consultas", "==array-contains ${ciudad.data}")
+                            }
+                        }
+                        .addOnFailureListener{
+                            Log.i("consultas", "fallo el seteo de productos")
+                        }
+                    irActividad(Productos::class.java)
+                }
                 val textView = view.findViewById<TextView>(R.id.textViewTitle)
                 textView.text = electTitle3[position]
             }
@@ -119,7 +170,22 @@ class CategoriasRopa : AppCompatActivity() {
             setCarouselViewListener { view, position ->
                 val imageView2 = view.findViewById<ImageView>(R.id.imageView)
                 imageView2.setImageDrawable(resources.getDrawable(imagesElect[position]))
-                imageView2.setOnClickListener {irActividad(Productos::class.java) }
+                imageView2.setOnClickListener {
+                    val db = Firebase.firestore
+                    val citiesRef = db.collection("productos")
+                    citiesRef
+                        .whereEqualTo("descripcion_categoria", "Chaquetas")
+                        .get()
+                        .addOnSuccessListener {
+                            for(ciudad in it){
+                                Log.i("consultas", "==array-contains ${ciudad.data}")
+                            }
+                        }
+                        .addOnFailureListener{
+                            Log.i("consultas", "fallo el seteo de productos")
+                        }
+                    irActividad(Productos::class.java)
+                }
                 val textView = view.findViewById<TextView>(R.id.textViewTitle)
                 textView.text = electTitle4[position]
             }
@@ -127,6 +193,19 @@ class CategoriasRopa : AppCompatActivity() {
         }
     }
 
+    /*fun setearUsuarioFirebase(){
+        val db = Firebase.firestore
+        if (SharedPreferenceUtils(this).getCategoryItem() != "null") {
+            database = FirebaseDatabase.getInstance()
+            // allFoodData= database.getReference("AllFood/flower");
+            allFoodData = database!!.getReference("AllFood/" + SharedPreferenceUtils(this).getCategoryItem())
+//            progressDialog?.show()
+            CustomProgressBar.showProgressbar()
+        } else {
+
+        }
+
+    }*/
 
     fun irActividad(
         clase: Class<*>,

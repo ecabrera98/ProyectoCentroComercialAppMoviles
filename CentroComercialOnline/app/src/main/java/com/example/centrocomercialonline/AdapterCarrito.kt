@@ -31,8 +31,8 @@ class AdapterCarrito (var itemList: List<ProductosDto>?) : RecyclerView.Adapter<
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val row: ProductosDto = itemList!![position]
-        holder.producto.setText(row.title)
-        holder.precio.setText(row.subtitle)
+        holder.producto.setText(row.nombre_producto)
+        holder.precio.setText(row.precio_producto)
         holder.icon.setImageResource(row.imageId)
 
     }

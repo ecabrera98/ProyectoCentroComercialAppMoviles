@@ -1,21 +1,14 @@
 package com.example.centrocomercialonline
 
-import android.app.AlertDialog
 import android.content.Intent
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.widget.Toolbar
-import androidx.core.graphics.component1
-import androidx.recyclerview.widget.RecyclerView
 import com.example.centrocomercialonline.dto.ProductosDto
-import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
 class DetalleProductos : AppCompatActivity() {
 
@@ -37,10 +30,10 @@ class DetalleProductos : AppCompatActivity() {
 
         val categoria = findViewById<TextView>(R.id.tv_title_categoria)
         val producto = findViewById<TextView>(R.id.tv_title_producto)
-        producto.setText(itemList[Producto].title)
+        producto.setText(itemList[Producto].nombre_producto)
         val detalle = findViewById<TextView>(R.id.tv_title_descripcion_producto)
         val precio = findViewById<TextView>(R.id.tv_price)
-        precio.setText(itemList[Producto].subtitle)
+        precio.setText(itemList[Producto].precio_producto)
 
 
         Log.e("position :", "${itemList[Producto]}")
