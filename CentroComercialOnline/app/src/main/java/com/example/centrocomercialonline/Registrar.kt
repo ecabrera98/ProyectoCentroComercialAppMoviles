@@ -1,10 +1,7 @@
 package com.example.centrocomercialonline
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Parcelable
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -12,24 +9,17 @@ import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.centrocomercialonline.dto.BAuthUsuario
-import com.example.centrocomercialonline.dto.BUsuarioFirebase
-import com.example.centrocomercialonline.dto.UsuarioDto
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import com.firebase.ui.auth.IdpResponse
-import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 
 
 class Registrar : AppCompatActivity() {
@@ -117,7 +107,7 @@ class Registrar : AppCompatActivity() {
     }
 
     fun showUserInformation(email:String){
-        val UserInformationIntent: Intent = Intent(this, UserInformation::class.java).apply {
+        val UserInformationIntent: Intent = Intent(this, RegisterUserInformation::class.java).apply {
             putExtra("email",email)
         }
         startActivity(UserInformationIntent)

@@ -4,11 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.centrocomercialonline.dto.ProductosDto
+import com.bumptech.glide.Glide
+import com.bumptech.glide.Glide.with
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.with
+import com.google.firebase.storage.FirebaseStorage
 
 class DetalleProductos : AppCompatActivity() {
 
@@ -16,27 +18,29 @@ class DetalleProductos : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalle_productos)
 
-        val Producto = intent.getIntExtra("ItemPosition",0)
-        Log.e("position :", "${Producto}")
 
-        val itemList: MutableList<ProductosDto> = mutableListOf()
-        itemList.add(ProductosDto(R.drawable.equipo1, "Equipo", "Prrecio:$ 300"))
-        itemList.add(ProductosDto(R.drawable.tv1, "TV", "Precio:$ 1500"))
+        val nombre = findViewById<TextView>(R.id.tv_nombre_producto)
+        val precio = findViewById<TextView>(R.id.tv_precio_producto)
+        val categoria = findViewById<TextView>(R.id.tv_categoria_producto)
+        val detalle = findViewById<TextView>(R.id.tv_descripcion_producto)
+        val imagen = findViewById<ImageView>(R.id.iv_product)
 
+        val intent = intent
+        val nombreProducto = intent.getStringExtra("iNombre")
+        val precioProducto = intent.getStringExtra("iPrecio")
+        val catProducto = intent.getStringExtra("iCat")
+        val descProducto = intent.getStringExtra("iDesc")
+        val imagenProducto = intent.getStringExtra("iIma")
 
-        val imagen = findViewById<ImageView>(R.id.iv_food)
-        imagen.setImageResource(itemList[Producto].imageId)
-        val tienda = findViewById<TextView>(R.id.tv_title_tienda)
+        nombre.text = nombreProducto
+        precio.text = precioProducto
+        categoria.text = catProducto
+        detalle.text = descProducto
 
-        val categoria = findViewById<TextView>(R.id.tv_title_categoria)
-        val producto = findViewById<TextView>(R.id.tv_title_producto)
-        producto.setText(itemList[Producto].nombre_producto)
-        val detalle = findViewById<TextView>(R.id.tv_title_descripcion_producto)
-        val precio = findViewById<TextView>(R.id.tv_price)
-        precio.setText(itemList[Producto].precio_producto)
-
-
-        Log.e("position :", "${itemList[Producto]}")
+        val storageRef = FirebaseStorage.getInstance().reference.child("imagesApp/$imagenProducto.jpeg")
+        with(this)
+                .load(storageRef)
+                .into(imagen)
 
         val carito = findViewById<Button>(R.id.tv_cart)
         carito.setOnClickListener {

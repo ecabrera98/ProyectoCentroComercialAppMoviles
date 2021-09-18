@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:backgroundTint="#FFEB3B"
     tools:context=".PerfilUsuario">
-    <include layout="@layout/activity_horizontal"/>
+    <include layout="@layout/activity_barranavegacion"/>
 
     <TextView
         android:id="@+id/textViewNotificaciones"

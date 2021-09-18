@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/include2"
-        layout="@layout/activity_horizontal"
+        layout="@layout/activity_barranavegacion"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-69dp" />
 

@@ -7,7 +7,7 @@
     tools:context=".CategoriasElect">
 
     <include
-        layout="@layout/activity_horizontal"
+        layout="@layout/activity_barranavegacion"
          />
 
     <com.jama.carouselview.CarouselView

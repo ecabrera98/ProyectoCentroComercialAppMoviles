@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -106,6 +107,7 @@ class LoginPage : AppCompatActivity() {
         builder.setPositiveButton("Aceptar",null)
         val dialog: AlertDialog = builder.create()
         dialog.show()
+
     }
 
 

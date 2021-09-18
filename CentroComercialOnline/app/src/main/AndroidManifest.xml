@@ -40,13 +40,34 @@
             android:name=".Carrito"
             android:exported="true" />
         <activity
-            android:name=".Productos"
+            android:name=".utils.ProductosAudioVideo"
+            android:exported="true" />
+        <activity
+            android:name=".utils.ProductosCamisetas"
+            android:exported="true" />
+        <activity
+            android:name=".utils.ProductosChaquetas"
+            android:exported="true" />
+        <activity
+            android:name=".utils.ProductosEntretenimiento"
+            android:exported="true" />
+        <activity
+            android:name=".utils.ProductosJeans"
+            android:exported="true" />
+        <activity
+            android:name=".utils.ProductosLineaBlanca"
+            android:exported="true" />
+        <activity
+            android:name=".utils.ProductosMovilidad"
+            android:exported="true" />
+        <activity
+            android:name=".utils.ProductosZapatos"
             android:exported="true" />
         <activity
             android:name=".Tiendas"
             android:exported="true" />
         <activity
-            android:name=".UserInformation"
+            android:name=".RegisterUserInformation"
             android:exported="true" />
         <activity
             android:name=".Registrar"

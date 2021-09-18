@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Tiendas">
-    <include layout="@layout/activity_horizontal"/>
+    <include layout="@layout/activity_barranavegacion"/>
 
     <TextView
         android:id="@+id/txv_titulo_tienda"

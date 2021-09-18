@@ -9,9 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.centrocomercialonline.dto.ProductosDto
-import com.example.centrocomercialonline.dto.UsuarioDto
-import com.google.firebase.firestore.Query
+import com.example.centrocomercialonline.utils.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
@@ -81,20 +79,7 @@ class CategoriasRopa : AppCompatActivity() {
                 val imageView1 = view.findViewById<ImageView>(R.id.imageView)
                 imageView1.setImageDrawable(resources.getDrawable(imagesElect[position]))
                 imageView1.setOnClickListener {
-                    val db = Firebase.firestore
-                    val citiesRef = db.collection("productos")
-                    citiesRef
-                        .whereEqualTo("descripcion_categoria", "Zapatos")
-                        .get()
-                        .addOnSuccessListener {
-                            for(ciudad in it){
-                                Log.i("consultas", "==array-contains ${ciudad.data}")
-                            }
-                        }
-                        .addOnFailureListener{
-                            Log.i("consultas", "fallo el seteo de productos")
-                        }
-                    irActividad(Productos::class.java)
+                    irActividad(ProductosZapatos::class.java)
                 }
                 val textView = view.findViewById<TextView>(R.id.textViewTitle)
                 textView.text = electTitle1[position]
@@ -111,20 +96,7 @@ class CategoriasRopa : AppCompatActivity() {
                 val imageView2 = view.findViewById<ImageView>(R.id.imageView)
                 imageView2.setImageDrawable(resources.getDrawable(imagesElect[position]))
                 imageView2.setOnClickListener {
-                    val db = Firebase.firestore
-                    val citiesRef = db.collection("productos")
-                    citiesRef
-                        .whereEqualTo("descripcion_categoria", "Camisetas")
-                        .get()
-                        .addOnSuccessListener {
-                            for(ciudad in it){
-                                Log.i("consultas", "==array-contains ${ciudad.data}")
-                            }
-                        }
-                        .addOnFailureListener{
-                            Log.i("consultas", "fallo el seteo de productos")
-                        }
-                    irActividad(Productos::class.java)
+                    irActividad(ProductosCamisetas::class.java)
                 }
                 val textView = view.findViewById<TextView>(R.id.textViewTitle)
                 textView.text = electTitle2[position]
@@ -141,20 +113,7 @@ class CategoriasRopa : AppCompatActivity() {
                 val imageView1 = view.findViewById<ImageView>(R.id.imageView)
                 imageView1.setImageDrawable(resources.getDrawable(imagesElect[position]))
                 imageView1.setOnClickListener {
-                    val db = Firebase.firestore
-                    val citiesRef = db.collection("productos")
-                    citiesRef
-                        .whereEqualTo("descripcion_categoria", "Jeans")
-                        .get()
-                        .addOnSuccessListener {
-                            for(ciudad in it){
-                                Log.i("consultas", "==array-contains ${ciudad.data}")
-                            }
-                        }
-                        .addOnFailureListener{
-                            Log.i("consultas", "fallo el seteo de productos")
-                        }
-                    irActividad(Productos::class.java)
+                    irActividad(ProductosJeans::class.java)
                 }
                 val textView = view.findViewById<TextView>(R.id.textViewTitle)
                 textView.text = electTitle3[position]
@@ -171,20 +130,7 @@ class CategoriasRopa : AppCompatActivity() {
                 val imageView2 = view.findViewById<ImageView>(R.id.imageView)
                 imageView2.setImageDrawable(resources.getDrawable(imagesElect[position]))
                 imageView2.setOnClickListener {
-                    val db = Firebase.firestore
-                    val citiesRef = db.collection("productos")
-                    citiesRef
-                        .whereEqualTo("descripcion_categoria", "Chaquetas")
-                        .get()
-                        .addOnSuccessListener {
-                            for(ciudad in it){
-                                Log.i("consultas", "==array-contains ${ciudad.data}")
-                            }
-                        }
-                        .addOnFailureListener{
-                            Log.i("consultas", "fallo el seteo de productos")
-                        }
-                    irActividad(Productos::class.java)
+                    irActividad(ProductosChaquetas::class.java)
                 }
                 val textView = view.findViewById<TextView>(R.id.textViewTitle)
                 textView.text = electTitle4[position]

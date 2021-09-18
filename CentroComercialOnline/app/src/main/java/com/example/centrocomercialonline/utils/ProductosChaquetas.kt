@@ -1,40 +1,41 @@
-package com.example.centrocomercialonline
+package com.example.centrocomercialonline.utils
 
 import android.content.Intent
-import android.graphics.drawable.ColorDrawable
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.centrocomercialonline.dto.ProductosDto
+import com.example.centrocomercialonline.*
+import com.example.centrocomercialonline.R
+import com.example.centrocomercialonline.dto.BProductosFirebase
+import com.google.firebase.firestore.*
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import com.jama.carouselview.CarouselView
 import com.jama.carouselview.enums.IndicatorAnimationType
 import com.jama.carouselview.enums.OffsetType
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import java.io.File
 
-class Productos : AppCompatActivity(),  AdapterElect.ClickListener {
-    private val itemList: MutableList<ProductosDto> = mutableListOf()
-    private var recyclerView: RecyclerView? = null
-    var adapter: AdapterElect? = null
+class ProductosChaquetas : AppCompatActivity() {
+    var db = Firebase.firestore
+    private lateinit var productRecyclerview : RecyclerView
+    private lateinit var productArrayList : ArrayList<BProductosFirebase>
+    private lateinit var adaptadorProductos: AdapterProduct
 
-    private val container by lazy { findViewById<View>(R.id.containerRegistrar) }
     private val title by lazy { findViewById<TextView>(R.id.title1) }
     private val menu by lazy { findViewById<ChipNavigationBar>(R.id.bottom_menu1) }
-
-    private var lastColor: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_productos)
-
-        lastColor = (container.background as ColorDrawable).color
 
         menu.setOnItemSelectedListener { id ->
             val option = when (id) {
@@ -54,7 +55,12 @@ class Productos : AppCompatActivity(),  AdapterElect.ClickListener {
             menu.showBadge(R.id.perfil, 32)
         }
 
-        val imagesProducts = arrayListOf(R.drawable.ropa2,R.drawable.ropa3, R.drawable.ropa1, R.drawable.ropa3)
+        val imagesProducts = arrayListOf(
+            R.drawable.ropa2,
+            R.drawable.ropa3,
+            R.drawable.ropa1,
+            R.drawable.ropa3
+        )
         val carouselViewProductos = findViewById<CarouselView>(R.id.carouselViewProductos)
 
         carouselViewProductos.apply {
@@ -72,32 +78,54 @@ class Productos : AppCompatActivity(),  AdapterElect.ClickListener {
             show()
         }
 
+        productRecyclerview = findViewById(R.id.recyclerViewProductos)
+        productRecyclerview.layoutManager = LinearLayoutManager(this)
+        productRecyclerview.setHasFixedSize(true)
 
-        recyclerView = findViewById(R.id.recyclerViewProductos)
-        prepareItem()
-        adapter = AdapterElect(itemList)
-        adapter?.setClickListener(this)
-        adapter?.setClickListener(this)
+        productArrayList = arrayListOf()
+       adaptadorProductos = AdapterProduct(productArrayList,this)
 
-        recyclerView?.layoutManager = GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
-        recyclerView?.itemAnimator = DefaultItemAnimator()
-        recyclerView?.adapter = adapter
+        productRecyclerview.adapter = adaptadorProductos
+        getProductoData()
+        getImagesData()
+
+    }
+
+
+    private fun getProductoData() {
+        db = FirebaseFirestore.getInstance()
+        db.collection("productos")
+            .whereEqualTo("descripcion_categoria", "Chaquetas")
+            .addSnapshotListener(object : EventListener<QuerySnapshot>{
+                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                    if (error != null){
+                        Log.e("FIrestore Error", error.message.toString())
+                        return
+                    }
+                    for (de: DocumentChange in value?.documentChanges!!){
+                        if(de.type == DocumentChange.Type.ADDED){
+                            productArrayList.add(de.document.toObject(BProductosFirebase::class.java))
+                        }
+                    }
+                    adaptadorProductos.notifyDataSetChanged()
+                }
+            })
+    }
+
+    fun getImagesData(){
+        // Create a storage reference from our app
+        val storageRef = FirebaseStorage.getInstance().reference.child("imagesApp")
+        val imageView1 = findViewById<ImageView>(R.id.icon)
+        val localFile = File.createTempFile("images", "jpg")
+        storageRef.getFile(localFile).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+            imageView1.setImageBitmap(bitmap)
+            adaptadorProductos.notifyDataSetChanged()
+        }
+        Log.i("images","fallo")
     }
 
 
-    private fun prepareItem() {
-        itemList.add(ProductosDto(R.drawable.equipo1, "Equipo", "Prrecio:$ 300"))
-        itemList.add(ProductosDto(R.drawable.tv1, "TV", "Precio:$ 1500"))
-        itemList.add(ProductosDto(R.drawable.equipo1, "Equipo2", "Precio: $ 700"))
-        itemList.add(ProductosDto(R.drawable.tv1, "TV2", "Pricio: $ 300"))
-        itemList.add(ProductosDto(R.drawable.equipo2, "Equipo3", "Pricio: $ 200"))
-    }
-
-    override fun itemClicked(view: View?, position: Int) {
-
-        irActividad(DetalleProductos::class.java, arrayListOf(Pair("ItemPosition",position)))
-
-    }
 
     fun irActividad(
         clase: Class<*>,

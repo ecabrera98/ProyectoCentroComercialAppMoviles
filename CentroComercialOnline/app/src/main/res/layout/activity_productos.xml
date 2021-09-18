@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Productos">
-    <include layout="@layout/activity_horizontal"/>
+    tools:context=".utils.ProductosAudioVideo">
+    <include layout="@layout/activity_barranavegacion"/>
 
     <com.jama.carouselview.CarouselView
         android:id="@+id/carouselViewProductos"

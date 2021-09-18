@@ -51,6 +51,6 @@
             android:layout_toEndOf="@+id/icon"
             android:paddingLeft="10dp"
             android:textColor="#3399ff"
-            android:textSize="14sp" />
+            android:textSize="20sp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

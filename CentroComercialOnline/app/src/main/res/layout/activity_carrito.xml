@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/activity_horizontal" />
+        layout="@layout/activity_barranavegacion" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_carrito"

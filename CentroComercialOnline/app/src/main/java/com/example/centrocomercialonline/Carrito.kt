@@ -20,10 +20,30 @@ class Carrito : AppCompatActivity(),AdapterCarrito.ClickListener {
     private val itemList: MutableList<ProductosDto> = mutableListOf()
     private var recyclerView: RecyclerView? = null
     var adapter: AdapterCarrito? = null
+    private val title by lazy { findViewById<TextView>(R.id.title1) }
+    private val menu by lazy { findViewById<ChipNavigationBar>(R.id.bottom_menu1) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_carrito)
+
+        menu.setOnItemSelectedListener { id ->
+        val option = when (id) {
+            R.id.home -> irActividad(Tiendas::class.java)  to "Inicio"
+            R.id.buscar -> R.color.colorSecundary to "Buscar"
+            R.id.carrito -> irActividad(Carrito::class.java) to "Carrito"
+            R.id.perfil -> irActividad(PerfilUsuario::class.java)  to "Perfil"
+            else -> R.color.white to ""
+        }
+
+        title.text = option.second
+    }
+
+
+    if (savedInstanceState == null) {
+        menu.showBadge(R.id.home)
+        menu.showBadge(R.id.perfil, 32)
+    }
 
         recyclerView = findViewById(R.id.rcv_carrito)
         prepareItem()
