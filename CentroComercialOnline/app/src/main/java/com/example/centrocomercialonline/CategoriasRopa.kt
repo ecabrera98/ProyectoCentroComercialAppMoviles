@@ -14,6 +14,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import com.jama.carouselview.CarouselView
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
+import org.imaginativeworld.whynotimagecarousel.utils.setImage
 
 
 class CategoriasRopa : AppCompatActivity() {
@@ -59,6 +61,31 @@ class CategoriasRopa : AppCompatActivity() {
         val categoriaText4 = findViewById<TextView>(R.id.tv_categoria4)
         categoriaText4.setText("CHAQUETAS")
 
+        val imagesElect1 = arrayListOf(
+            "https://ae01.alicdn.com/kf/HTB1ZuHLbcnrK1RjSspkq6yuvXXal/Zapatos-deportivos-de-tejido-volador-para-hombre-zapatillas-con-cordones-transpirables-c-modas-y-con-absorci.jpg_Q90.jpg_.webp",
+            "https://i.pinimg.com/564x/47/71/fc/4771fcb7e3f3a6a2fe805f7fcc1230c7.jpg",
+            "https://www.calzadofaerma.com/wp-content/uploads/2020/07/Hermosos-tacones-de-mujer-de-color-Rojo2.jpg",
+            "https://i.pinimg.com/originals/27/ab/d7/27abd74ef49c73f37051a2bffde7cccd.jpg"
+        )
+        val imagesElect2 = arrayListOf(
+            "https://i.pinimg.com/736x/b4/61/73/b461731f717c93168cfdeed81119d23c.jpg",
+            "https://i.pinimg.com/originals/9a/56/41/9a5641cc33f4d22a1448b31b673f31f8.jpg",
+            "https://www.induvest.com.ec/wp-content/uploads/2021/04/CAMISA-JEAN-REFLECTIVA-FRENTE.jpg",
+            "https://ae01.alicdn.com/kf/H168146c62e82494d839daf6f035a19cb6/Mother-Daughter-Baby-Clothes-Family-Matching-Outfits-Father-Son-T-Shirt-Plaid-Shirt-Mum-Mama-and.jpg_q50.jpg"
+        )
+        val imagesElect3 = arrayListOf(
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLU3Fr5qwa5j0u1Ao-P6hqq-1iAxVU7o0Lc_HxaZHpWAv3IfrEFTRURYUOdBVpFJe4ICg&usqp=CAU",
+            "https://i.pinimg.com/originals/14/c4/f3/14c4f341e0a6440c90920e7c23a237b4.jpg",
+            "https://previews.123rf.com/images/georgerudy/georgerudy1605/georgerudy160501062/57603827-retrato-de-cuerpo-entero-de-ni%C3%B1os-poco-lindo-en-jeans-ropa-elegante-mirando-la-c%C3%A1mara-y-sonriente-de.jpg",
+            "https://cdn.fashiola.mx/L549919575/reclaimed-vintage-inspired-the-83-unisex-relaxed-jean-in-light-wash-blue.jpg"
+        )
+        val imagesElect4 = arrayListOf(
+            "https://m.media-amazon.com/images/I/416fbyLaFKS._SL500_.jpg",
+            "https://bazar.ec/wp-content/uploads/2020/07/rBVaVl1TcAiATairAAgXXBmAZpM805.jpg",
+            "https://laovejanegra.sogamosocompravirtual.com/921-large_default/chaqueta-hombre-lana-de-oveja-talla-m.jpg",
+            "https://velavi.com/wp-content/uploads/2018/07/pp-conjunto-impermeable.jpg"
+        )
+
         val imagesElect = arrayListOf(R.drawable.elec1,R.drawable.elec2, R.drawable.elec3, R.drawable.equipo1)
         val electTitle1 = arrayListOf("Deportivos","Casuales","Tacones","Botas...")
         val electTitle2 = arrayListOf("Blusas","Busos","Camisas","Personalizadas...")
@@ -71,13 +98,13 @@ class CategoriasRopa : AppCompatActivity() {
         val carouselViewElect4 = findViewById<CarouselView>(R.id.carouselViewGanga4)
 
         carouselViewElect1.apply {
-            size = imagesElect.size
+            size = imagesElect1.size
             autoPlay = true
             autoPlayDelay = 3000
             resource = R.layout.start_carousel_elects_item
             setCarouselViewListener { view, position ->
                 val imageView1 = view.findViewById<ImageView>(R.id.imageView)
-                imageView1.setImageDrawable(resources.getDrawable(imagesElect[position]))
+                imageView1.setImage(CarouselItem(imagesElect1[position]))
                 imageView1.setOnClickListener {
                     irActividad(ProductosZapatos::class.java)
                 }
@@ -88,13 +115,13 @@ class CategoriasRopa : AppCompatActivity() {
         }
 
         carouselViewElect2.apply {
-            size = imagesElect.size
+            size = imagesElect2.size
             autoPlay = true
             autoPlayDelay = 3000
             resource = R.layout.start_carousel_elects_item
             setCarouselViewListener { view, position ->
                 val imageView2 = view.findViewById<ImageView>(R.id.imageView)
-                imageView2.setImageDrawable(resources.getDrawable(imagesElect[position]))
+                imageView2.setImage(CarouselItem(imagesElect2[position]))
                 imageView2.setOnClickListener {
                     irActividad(ProductosCamisetas::class.java)
                 }
@@ -105,13 +132,13 @@ class CategoriasRopa : AppCompatActivity() {
         }
 
         carouselViewElect3.apply {
-            size = imagesElect.size
+            size = imagesElect3.size
             autoPlay = true
             autoPlayDelay = 3000
             resource = R.layout.start_carousel_elects_item
             setCarouselViewListener { view, position ->
                 val imageView1 = view.findViewById<ImageView>(R.id.imageView)
-                imageView1.setImageDrawable(resources.getDrawable(imagesElect[position]))
+                imageView1.setImage(CarouselItem(imagesElect3[position]))
                 imageView1.setOnClickListener {
                     irActividad(ProductosJeans::class.java)
                 }
@@ -122,13 +149,13 @@ class CategoriasRopa : AppCompatActivity() {
         }
 
         carouselViewElect4.apply {
-            size = imagesElect.size
+            size = imagesElect4.size
             autoPlay = true
             autoPlayDelay = 3000
             resource = R.layout.start_carousel_elects_item
             setCarouselViewListener { view, position ->
                 val imageView2 = view.findViewById<ImageView>(R.id.imageView)
-                imageView2.setImageDrawable(resources.getDrawable(imagesElect[position]))
+                imageView2.setImage(CarouselItem(imagesElect4[position]))
                 imageView2.setOnClickListener {
                     irActividad(ProductosChaquetas::class.java)
                 }

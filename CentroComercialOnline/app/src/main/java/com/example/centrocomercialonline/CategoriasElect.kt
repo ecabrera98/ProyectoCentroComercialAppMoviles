@@ -12,7 +12,10 @@ import com.example.centrocomercialonline.utils.ProductosEntretenimiento
 import com.example.centrocomercialonline.utils.ProductosLineaBlanca
 import com.example.centrocomercialonline.utils.ProductosMovilidad
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
+import com.jama.carouselview.CarouselItemDecoration
 import com.jama.carouselview.CarouselView
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
+import org.imaginativeworld.whynotimagecarousel.utils.setImage
 
 class CategoriasElect : AppCompatActivity(){
 
@@ -57,7 +60,32 @@ class CategoriasElect : AppCompatActivity(){
         val categoriaText4 = findViewById<TextView>(R.id.tv_categoria4)
         categoriaText4.setText("MOVILIDAD")
 
-        val imagesElect = arrayListOf(R.drawable.elec1,R.drawable.elec2, R.drawable.elec3, R.drawable.equipo1)
+        val imagesElect1 = arrayListOf(
+            "https://crecos.vteximg.com.br/arquivos/ids/178405-1000-1000/cocina-mabe-EM7630FX0.jpg?v=637167079677600000",
+            "https://gollo-prod-grupounicomer.netdna-ssl.com/media/catalog/product/cache/7536f51f1dcaf1415428fad840de9edd/1/0/109475_00.jpg",
+            "https://livansud.vteximg.com.br/arquivos/ids/160255-1000-1000/licuadora-hamilton-beach-58615-9-velocidades-1.jpg?v=637488273431600000",
+            "https://tiaecuador.vteximg.com.br/arquivos/ids/181029-1000-1000/imagen_2021-06-02_164736.png?v=637582672569500000"
+        )
+        val imagesElect2 = arrayListOf(
+            "https://dalthron.com.pe/wp-content/uploads/2019/04/SC-AKX400PS-Product_ImageGlobal-1_pe_es.png",
+            "https://m.media-amazon.com/images/I/61KxvageMJL._AC_SL1100_.jpg",
+            "https://www.todoparati.online/wp-content/uploads/2019/06/Aud%C3%ADfonos-Bluetooth-Cat.png",
+            "https://images.samsung.com/is/image/samsung/latin-fhdtv-j5290-un43j5290ahxpa-frontblack-197304796?\$720_576_PNG\$"
+        )
+        val imagesElect3 = arrayListOf(
+            "https://i.blogs.es/feaa2f/nueva_sony_ps3_slim/450_1000.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Microsoft-Xbox-One-Console-wKinect.png/1200px-Microsoft-Xbox-One-Console-wKinect.png",
+            "https://img.redbull.com/images/c_crop,x_509,y_0,h_1527,w_1781/c_fill,w_650,h_540/q_auto,f_auto/redbullcom/2016/11/02/1331827173241_2/sony-ps4-pro",
+            "https://phantom-marca.unidadeditorial.es/2c7447c907807c0e71460e0da3448ba0/crop/0x79/773x512/resize/1320/f/jpg/assets/multimedia/imagenes/2021/03/25/16166666969525.jpg"
+        )
+        val imagesElect4 = arrayListOf(
+            "https://labicikleta.com/wp-content/uploads/2016/07/FeatureBiciMontana-770x513.jpg",
+            "https://www.tuningmex.com/fabricaweb/wp-content/uploads/Dominar-perfil-01-780x443.jpg",
+            "http://www.integraciondigital.com/presta/24-large_default/motoneta-d125.jpg",
+            "https://intershop.com.ec/wp-content/uploads/2021/05/Patineta-NInos-4-scaled.jpg"
+        )
+
+//        val imagesElect = arrayListOf(R.drawable.elec1,R.drawable.elec2, R.drawable.elec3, R.drawable.equipo1)
         val electTitle1 = arrayListOf("Cocinas", "Refrigeradores","Licuadora", "Y algo más...",)
         val electTitle2 = arrayListOf("Equipos de sonido", "Mp3 ipods","Audifonos","smarttv con android tv...")
         val electTitle3 = arrayListOf("Play Station 3", "XBOX" ,"Play Station 4","PSP...")
@@ -69,13 +97,13 @@ class CategoriasElect : AppCompatActivity(){
         val carouselViewElect4 = findViewById<CarouselView>(R.id.carouselViewGanga4)
 
         carouselViewElect1.apply {
-            size = imagesElect.size
+            size = imagesElect1.size
             autoPlay = true
             autoPlayDelay = 3000
             resource = R.layout.start_carousel_elects_item
             setCarouselViewListener { view, position ->
                 val imageView1 = view.findViewById<ImageView>(R.id.imageView)
-                imageView1.setImageDrawable(resources.getDrawable(imagesElect[position]))
+                imageView1.setImage(CarouselItem(imagesElect1[position]))
                 imageView1.setOnClickListener {
                     irActividad(ProductosLineaBlanca::class.java)
                 }
@@ -86,13 +114,13 @@ class CategoriasElect : AppCompatActivity(){
         }
 
         carouselViewElect2.apply {
-            size = imagesElect.size
+            size = imagesElect2.size
             autoPlay = true
             autoPlayDelay = 3000
             resource = R.layout.start_carousel_elects_item
             setCarouselViewListener { view, position ->
                 val imageView2 = view.findViewById<ImageView>(R.id.imageView)
-                imageView2.setImageDrawable(resources.getDrawable(imagesElect[position]))
+                imageView2.setImage(CarouselItem(imagesElect2[position]))
                 imageView2.setOnClickListener {
                     irActividad(ProductosAudioVideo::class.java)
                 }
@@ -103,13 +131,13 @@ class CategoriasElect : AppCompatActivity(){
         }
 
         carouselViewElect3.apply {
-            size = imagesElect.size
+            size = imagesElect3.size
             autoPlay = true
             autoPlayDelay = 3000
             resource = R.layout.start_carousel_elects_item
             setCarouselViewListener { view, position ->
                 val imageView1 = view.findViewById<ImageView>(R.id.imageView)
-                imageView1.setImageDrawable(resources.getDrawable(imagesElect[position]))
+                imageView1.setImage(CarouselItem(imagesElect3[position]))
                 imageView1.setOnClickListener {
                     irActividad(ProductosEntretenimiento::class.java)
                 }
@@ -120,13 +148,13 @@ class CategoriasElect : AppCompatActivity(){
         }
 
         carouselViewElect4.apply {
-            size = imagesElect.size
+            size = imagesElect4.size
             autoPlay = true
             autoPlayDelay = 3000
             resource = R.layout.start_carousel_elects_item
             setCarouselViewListener { view, position ->
                 val imageView2 = view.findViewById<ImageView>(R.id.imageView)
-                imageView2.setImageDrawable(resources.getDrawable(imagesElect[position]))
+                imageView2.setImage(CarouselItem(imagesElect4[position]))
                 imageView2.setOnClickListener {
                     irActividad(ProductosMovilidad::class.java)
                 }
