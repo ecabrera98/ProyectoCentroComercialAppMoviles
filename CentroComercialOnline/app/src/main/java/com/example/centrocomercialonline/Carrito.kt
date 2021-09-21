@@ -56,7 +56,7 @@ class Carrito : AppCompatActivity(){
         Log.i("Detalle-Carrito","${producto!!.imageId}")
 
         itemList.add(ProductosDto(producto.imageId,producto.nombre_producto,producto.precio_producto))
-        itemList.add(ProductosDto("camiseta1","camiseta","360"))
+        itemList.add(ProductosDto("camiseta1","camiseta","$360"))
 
         recyclerView = findViewById(R.id.rcv_carrito)
         recyclerView.layoutManager = LinearLayoutManager(this)
