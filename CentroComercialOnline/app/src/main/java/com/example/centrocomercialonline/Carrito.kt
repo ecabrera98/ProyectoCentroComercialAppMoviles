@@ -13,13 +13,16 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.centrocomercialonline.dto.ProductosDto
+import com.google.firebase.storage.FirebaseStorage
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
-class Carrito : AppCompatActivity(),AdapterCarrito.ClickListener {
-    private val itemList: MutableList<ProductosDto> = mutableListOf()
-    private var recyclerView: RecyclerView? = null
-    var adapter: AdapterCarrito? = null
+class Carrito : AppCompatActivity(){
+    private lateinit var adaptadorCarrito: AdapterCarrito
+
+    private lateinit var recyclerView: RecyclerView
+
     private val title by lazy { findViewById<TextView>(R.id.title1) }
     private val menu by lazy { findViewById<ChipNavigationBar>(R.id.bottom_menu1) }
 
@@ -45,42 +48,37 @@ class Carrito : AppCompatActivity(),AdapterCarrito.ClickListener {
         menu.showBadge(R.id.perfil, 32)
     }
 
-        recyclerView = findViewById(R.id.rcv_carrito)
-        prepareItem()
-        adapter = AdapterCarrito(itemList)
-        adapter?.setClickListener(this)
-        adapter?.setClickListener(this)
+        val producto = intent.getParcelableExtra<ProductosDto>("Producto")
 
-        recyclerView?.layoutManager = LinearLayoutManager(this)
-        recyclerView?.itemAnimator = DefaultItemAnimator()
-        recyclerView?.adapter = adapter
+        var itemList: ArrayList<ProductosDto>
+        itemList = arrayListOf()
+
+        Log.i("Detalle0","${producto!!.imageId}")
+
+        itemList.add(ProductosDto(producto.imageId,producto.nombre_producto,producto.precio_producto))
+        itemList.add(ProductosDto("camiseta1","camiseta","360"))
+
+        recyclerView = findViewById(R.id.rcv_carrito)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(true)
+
+        adaptadorCarrito = AdapterCarrito(itemList,this)
+
+        recyclerView.adapter = adaptadorCarrito
+
 
         val comprar = findViewById<TextView>(R.id.btn_comprar_carrito)
         comprar.setOnClickListener {
-            irActividad(Pedido::class.java)
+            irActividad(Pedido::class.java,
+                arrayListOf(Pair("Producto",ProductosDto
+                    (producto.imageId,producto.nombre_producto,producto.precio_producto))
+                )
+            )
         }
 
     }
 
-    private fun prepareItem() {
-        itemList.add(ProductosDto(R.drawable.equipo1, "Equipo", "Prrecio:$ 300"))
-        itemList.add(ProductosDto(R.drawable.tv1, "TV", "Precio:$ 1500"))
-        itemList.add(ProductosDto(R.drawable.equipo1, "Equipo2", "Precio: $ 700"))
-        itemList.add(ProductosDto(R.drawable.tv1, "TV2", "Pricio: $ 300"))
-        itemList.add(ProductosDto(R.drawable.equipo2, "Equipo3", "Pricio: $ 200"))
-    }
 
-    override fun itemClicked(view: View?, position: Int) {
-        when (position) {
-            0 -> SharedPreferenceUtils(this).setCategoryItem("flower")
-            1 -> SharedPreferenceUtils(this).setCategoryItem("fruit")
-            2 -> SharedPreferenceUtils(this).setCategoryItem("leaves")
-            3 -> SharedPreferenceUtils(this).setCategoryItem("root")
-            4 -> SharedPreferenceUtils(this).setCategoryItem("salad")
-            else -> Log.e("position :", position.toString())
-        }
-        startActivity(Intent(this@Carrito, Pedido::class.java).putExtra("ItemPosition ", position))
-    }
 
     fun irActividad(
         clase: Class<*>,

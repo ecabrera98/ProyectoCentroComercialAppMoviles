@@ -83,7 +83,7 @@ class ProductosAudioVideo : AppCompatActivity() {
         productRecyclerview.setHasFixedSize(true)
 
         productArrayList = arrayListOf()
-       adaptadorProductos = AdapterProduct(productArrayList,this)
+        adaptadorProductos = AdapterProduct(productArrayList,this)
 
         productRecyclerview.adapter = adaptadorProductos
         getProductoData()

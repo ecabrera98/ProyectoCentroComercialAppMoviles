@@ -4,12 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Glide.with
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.with
+import com.example.centrocomercialonline.dto.ProductosDto
 import com.google.firebase.storage.FirebaseStorage
 
 class DetalleProductos : AppCompatActivity() {
@@ -44,10 +46,13 @@ class DetalleProductos : AppCompatActivity() {
 
         val carito = findViewById<Button>(R.id.tv_cart)
         carito.setOnClickListener {
-            irActividad(Carrito::class.java)
+            irActividad(Carrito::class.java,
+                arrayListOf(Pair("Producto",ProductosDto
+                    (imagenProducto!!,nombreProducto!!,precioProducto!!))
+                )
+            )
         }
     }
-
 
     fun irActividad(
         clase: Class<*>,

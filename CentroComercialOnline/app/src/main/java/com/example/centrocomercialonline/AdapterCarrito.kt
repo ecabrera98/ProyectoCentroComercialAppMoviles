@@ -1,28 +1,21 @@
 package com.example.centrocomercialonline
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.centrocomercialonline.dto.BProductosFirebase
 import com.example.centrocomercialonline.dto.ProductosDto
+import com.google.firebase.storage.FirebaseStorage
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
+import org.imaginativeworld.whynotimagecarousel.utils.setImage
 
-class AdapterCarrito (var itemList: List<ProductosDto>?) : RecyclerView.Adapter<AdapterCarrito.MyViewHolder>() {
+class AdapterCarrito (private val itemList : ArrayList<ProductosDto>, val context : Context) : RecyclerView.Adapter<AdapterCarrito.MyViewHolder>() {
 
-    private var clickListener: AdapterCarrito.ClickListener? = null
-
-    class MyViewHolder(parent: View) : RecyclerView.ViewHolder(parent) {
-        var producto: TextView
-        var precio: TextView
-        var icon: ImageView
-
-        init {
-            producto = parent.findViewById(R.id.txv_nombre_producto)
-            precio = parent.findViewById(R.id.txv_precio)
-            icon = parent.findViewById(R.id.img_producto)
-        }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.activity_item_carrito, parent, false)
@@ -30,23 +23,34 @@ class AdapterCarrito (var itemList: List<ProductosDto>?) : RecyclerView.Adapter<
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val row: ProductosDto = itemList!![position]
-        holder.producto.setText(row.nombre_producto)
-        holder.precio.setText(row.precio_producto)
-        holder.icon.setImageResource(row.imageId)
+        val model = itemList[position]
+        holder.bindItems(itemList[position])
+
+        val icon: ImageView = holder.itemView.findViewById(R.id.img_producto)
+        var imageName: String = model.imageId
+
+        val storageRef = FirebaseStorage.getInstance().reference.child("imagesApp/$imageName.jpeg")
+        Glide.with(context)
+            .load(storageRef)
+            .into(icon)
+
 
     }
 
     override fun getItemCount(): Int {
-        return itemList!!.size
+        return itemList.size
     }
 
-    interface ClickListener {
-        fun itemClicked(view: View?, position: Int)
-    }
+    class MyViewHolder(parent: View) : RecyclerView.ViewHolder(parent) {
+        fun bindItems(model: ProductosDto) {
+            val producto: TextView = itemView.findViewById(R.id.txv_nombre_producto)
+            val precio: TextView = itemView.findViewById(R.id.txv_precio)
 
-    fun setClickListener(clickListener: Carrito) {
-        this.clickListener = clickListener
+            producto.text = model.nombre_producto
+            precio.text = model.precio_producto
+
+        }
     }
+    
 
 }
