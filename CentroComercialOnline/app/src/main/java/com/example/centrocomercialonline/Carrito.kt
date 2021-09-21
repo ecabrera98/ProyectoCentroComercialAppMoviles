@@ -53,7 +53,7 @@ class Carrito : AppCompatActivity(){
         var itemList: ArrayList<ProductosDto>
         itemList = arrayListOf()
 
-        Log.i("Detalle0","${producto!!.imageId}")
+        Log.i("Detalle-Carrito"<,"${producto!!.imageId}")
 
         itemList.add(ProductosDto(producto.imageId,producto.nombre_producto,producto.precio_producto))
         itemList.add(ProductosDto("camiseta1","camiseta","360"))
