@@ -86,7 +86,7 @@ class CategoriasRopa : AppCompatActivity() {
             "https://velavi.com/wp-content/uploads/2018/07/pp-conjunto-impermeable.jpg"
         )
 
-        val imagesElect = arrayListOf(R.drawable.elec1,R.drawable.elec2, R.drawable.elec3, R.drawable.equipo1)
+        val imagesElect = arrayListOf(R.drawable.elec1,R.drawable.elec2, R.drawable.elec3, R.drawable.elec3)
         val electTitle1 = arrayListOf("Deportivos","Casuales","Tacones","Botas...")
         val electTitle2 = arrayListOf("Blusas","Busos","Camisas","Personalizadas...")
         val electTitle3 = arrayListOf("Caballeros","Damas","Niños","Unisex...")
