@@ -1,20 +1,15 @@
 package com.example.centrocomercialonline
 
 import android.content.Intent
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
-import android.view.View
 import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.centrocomercialonline.adapters.AdapterCarrito
 import com.example.centrocomercialonline.dto.ProductosDto
-import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
 class Pedido : AppCompatActivity(){
     private lateinit var adaptadorCarrito: AdapterCarrito

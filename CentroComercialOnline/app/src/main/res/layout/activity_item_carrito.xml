@@ -34,7 +34,7 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <LinearLayout
-                android:id="@+id/linearLayout"
+                android:id="@+id/linearLayoutcarrito"
                 android:layout_width="193dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -68,9 +68,11 @@
                     android:layout_height="wrap_content"
                     android:text="Precio"
                     android:textSize="14sp" />
+
             </LinearLayout>
 
         </RelativeLayout>
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

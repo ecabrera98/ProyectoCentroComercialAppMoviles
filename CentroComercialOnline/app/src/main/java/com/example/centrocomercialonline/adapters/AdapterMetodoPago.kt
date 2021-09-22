@@ -1,22 +1,13 @@
-package com.example.centrocomercialonline
+package com.example.centrocomercialonline.adapters
 
-import android.content.Context
-import android.content.Intent
-import android.os.Parcelable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.core.app.ActivityCompat.startActivityForResult
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.centrocomercialonline.R
 import com.example.centrocomercialonline.dto.TarjetaDto
-import com.firebase.ui.auth.AuthUI
-import java.security.AccessController.getContext
 
 class AdapterMetodoPago(var itemList: List<TarjetaDto>?) : RecyclerView.Adapter<AdapterMetodoPago.MyViewHolder>() {
 

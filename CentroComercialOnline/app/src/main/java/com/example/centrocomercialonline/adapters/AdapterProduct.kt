@@ -1,8 +1,7 @@
-package com.example.centrocomercialonline
+package com.example.centrocomercialonline.adapters
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,15 +9,17 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.centrocomercialonline.DetalleProductos
+import com.example.centrocomercialonline.R
 import com.example.centrocomercialonline.dto.BProductosFirebase
 import com.google.firebase.storage.FirebaseStorage
-import java.io.File
 
 
 class AdapterProduct (private val productList : ArrayList<BProductosFirebase>, val context : Context) : RecyclerView.Adapter<AdapterProduct.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_productos,
+        val itemView = LayoutInflater.from(parent.context).inflate(
+            R.layout.item_productos,
             parent,false)
         return MyViewHolder(itemView)
 

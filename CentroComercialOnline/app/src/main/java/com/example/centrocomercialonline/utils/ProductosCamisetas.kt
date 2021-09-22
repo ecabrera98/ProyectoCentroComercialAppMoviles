@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.centrocomercialonline.*
 import com.example.centrocomercialonline.R
+import com.example.centrocomercialonline.adapters.AdapterProduct
 import com.example.centrocomercialonline.dto.BProductosFirebase
 import com.google.firebase.firestore.*
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
@@ -32,7 +33,6 @@ class ProductosCamisetas : AppCompatActivity() {
     private val title by lazy { findViewById<TextView>(R.id.title1) }
     private val menu by lazy { findViewById<ChipNavigationBar>(R.id.bottom_menu1) }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_productos)
@@ -45,10 +45,8 @@ class ProductosCamisetas : AppCompatActivity() {
                 R.id.perfil -> irActividad(PerfilUsuario::class.java)  to "Perfil"
                 else -> R.color.white to ""
             }
-
             title.text = option.second
         }
-
 
         if (savedInstanceState == null) {
             menu.showBadge(R.id.home)
@@ -87,8 +85,6 @@ class ProductosCamisetas : AppCompatActivity() {
 
         productRecyclerview.adapter = adaptadorProductos
         getProductoData()
-        getImagesData()
-
     }
 
 
@@ -111,20 +107,6 @@ class ProductosCamisetas : AppCompatActivity() {
                 }
             })
     }
-
-    fun getImagesData(){
-        // Create a storage reference from our app
-        val storageRef = FirebaseStorage.getInstance().reference.child("imagesApp")
-        val imageView1 = findViewById<ImageView>(R.id.icon)
-        val localFile = File.createTempFile("images", "jpg")
-        storageRef.getFile(localFile).addOnSuccessListener {
-            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
-            imageView1.setImageBitmap(bitmap)
-            adaptadorProductos.notifyDataSetChanged()
-        }
-        Log.i("images","fallo")
-    }
-
 
 
     fun irActividad(

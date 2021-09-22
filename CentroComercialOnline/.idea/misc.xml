@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable/ic_activity.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_box.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_more.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_settings.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_shopping_cart.xml" value="0.1" />
@@ -25,7 +26,7 @@
         <entry key="app/src/main/res/layout/activity_detalle_productos.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_elects_carousel.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/activity_horizontal.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_item_carrito.xml" value="0.175" />
+        <entry key="app/src/main/res/layout/activity_item_carrito.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_metodo_pago.xml" value="0.1" />
@@ -48,6 +49,7 @@
         <entry key="app/src/main/res/layout/start_carousel_ropa_item.xml" value="0.1890625" />
         <entry key="app/src/main/res/menu/buscar.xml" value="0.175" />
         <entry key="app/src/main/res/menu/menucc.xml" value="0.1890625" />
+        <entry key="app/src/main/res/menu/menuproducto.xml" value="0.175" />
       </map>
     </option>
   </component>

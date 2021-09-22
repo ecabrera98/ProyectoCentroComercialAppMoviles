@@ -4,19 +4,16 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
-import android.view.View
 import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.centrocomercialonline.dto.ProductosDto
+import com.example.centrocomercialonline.adapters.AdapterMetodoPago
 import com.example.centrocomercialonline.dto.TarjetaDto
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
-class MetodoPago : AppCompatActivity(),AdapterMetodoPago.ClickListener {
+class MetodoPago : AppCompatActivity(), AdapterMetodoPago.ClickListener {
     private val title by lazy { findViewById<TextView>(R.id.title1) }
     private val menu by lazy { findViewById<ChipNavigationBar>(R.id.bottom_menu1) }
     private val itemList: MutableList<TarjetaDto> = mutableListOf()

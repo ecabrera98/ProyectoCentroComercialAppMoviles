@@ -11,6 +11,7 @@ import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.centrocomercialonline.adapters.AdapterProduct
 import com.example.centrocomercialonline.dto.BProductosFirebase
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.EventListener

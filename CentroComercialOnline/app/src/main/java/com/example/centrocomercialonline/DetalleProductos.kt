@@ -12,6 +12,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.Glide.with
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.with
 import com.example.centrocomercialonline.dto.ProductosDto
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 
 class DetalleProductos : AppCompatActivity() {
@@ -51,8 +53,28 @@ class DetalleProductos : AppCompatActivity() {
                     (imagenProducto!!,nombreProducto!!,precioProducto!!))
                 )
             )
+            val nuevaPersona = hashMapOf<String, Any>(
+                "Imagen" to imagenProducto.toString(),
+                "NombreProducto" to nombre.text,
+                "Precio" to precio.text,
+            )
+            val db = Firebase.firestore
+            val referencia = db.collection("carrito")
+
+            referencia
+                .add(nuevaPersona)
+                .addOnSuccessListener {
+                    Log.i("firestore-persona", "Valio carrito")
+                }
+                .addOnFailureListener {
+                    Log.i("firestore-persona", "no se pudo cargar los datos al firestore ")
+                }
         }
+
+
     }
+
+
 
     fun irActividad(
         clase: Class<*>,

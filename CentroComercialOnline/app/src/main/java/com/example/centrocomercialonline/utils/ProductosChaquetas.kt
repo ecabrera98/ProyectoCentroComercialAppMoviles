@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.centrocomercialonline.*
 import com.example.centrocomercialonline.R
+import com.example.centrocomercialonline.adapters.AdapterProduct
 import com.example.centrocomercialonline.dto.BProductosFirebase
 import com.google.firebase.firestore.*
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
@@ -87,8 +88,6 @@ class ProductosChaquetas : AppCompatActivity() {
 
         productRecyclerview.adapter = adaptadorProductos
         getProductoData()
-        getImagesData()
-
     }
 
 
@@ -112,18 +111,6 @@ class ProductosChaquetas : AppCompatActivity() {
             })
     }
 
-    fun getImagesData(){
-        // Create a storage reference from our app
-        val storageRef = FirebaseStorage.getInstance().reference.child("imagesApp")
-        val imageView1 = findViewById<ImageView>(R.id.icon)
-        val localFile = File.createTempFile("images", "jpg")
-        storageRef.getFile(localFile).addOnSuccessListener {
-            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
-            imageView1.setImageBitmap(bitmap)
-            adaptadorProductos.notifyDataSetChanged()
-        }
-        Log.i("images","fallo")
-    }
 
 
 
