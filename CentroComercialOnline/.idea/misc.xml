@@ -17,6 +17,9 @@
         <entry key="app/src/main/res/layout-w1240dp/activity_registrarse.xml" value="0.1214859437751004" />
         <entry key="app/src/main/res/layout-w1240dp/center_carousel_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout-w936dp/activity_registrarse.xml" value="0.141796875" />
+        <entry key="app/src/main/res/layout/activity_actualizar_user.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_actualizar_usuario.xml" value="0.175" />
+        <entry key="app/src/main/res/layout/activity_agregar_tarjeta.xml" value="0.175" />
         <entry key="app/src/main/res/layout/activity_barranavegacion.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_buscar_producto.xml" value="0.12454710144927536" />
         <entry key="app/src/main/res/layout/activity_carrito.xml" value="0.175" />
@@ -26,6 +29,7 @@
         <entry key="app/src/main/res/layout/activity_detalle_productos.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_elects_carousel.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/activity_horizontal.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_information_update.xml" value="0.175" />
         <entry key="app/src/main/res/layout/activity_item_carrito.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />

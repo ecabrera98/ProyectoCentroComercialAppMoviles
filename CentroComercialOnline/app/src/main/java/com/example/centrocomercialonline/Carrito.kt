@@ -21,10 +21,8 @@ import com.google.firebase.ktx.Firebase
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
 class Carrito : AppCompatActivity(){
-    var posicionElementoSeleccionado = 0
     private lateinit var adaptadorCarrito: AdapterCarrito
     private lateinit var recyclerView: RecyclerView
-    var productoSeleccionado: ProductosDto? = null
     private lateinit var productoArrayList : ArrayList<ProductosDto>
     private val title by lazy { findViewById<TextView>(R.id.title1) }
     private val menu by lazy { findViewById<ChipNavigationBar>(R.id.bottom_menu1) }
@@ -36,7 +34,7 @@ class Carrito : AppCompatActivity(){
         menu.setOnItemSelectedListener { id ->
         val option = when (id) {
             R.id.home -> irActividad(Tiendas::class.java)  to "Inicio"
-            R.id.buscar -> R.color.colorSecundary to "Buscar"
+            R.id.buscar -> irActividad(BuscarProducto::class.java) to "Buscar"
             R.id.carrito -> irActividad(Carrito::class.java) to "Carrito"
             R.id.perfil -> irActividad(PerfilUsuario::class.java)  to "Perfil"
             else -> R.color.white to ""
@@ -48,8 +46,6 @@ class Carrito : AppCompatActivity(){
         menu.showBadge(R.id.home)
         menu.showBadge(R.id.perfil, 32)
     }
-
-        val producto = intent.getParcelableExtra<ProductosDto>("Producto")
 
         recyclerView = findViewById(R.id.rcv_carrito)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -64,9 +60,9 @@ class Carrito : AppCompatActivity(){
         val comprar = findViewById<TextView>(R.id.btn_comprar_carrito)
         comprar.setOnClickListener {
             irActividad(Pedido::class.java,
-                arrayListOf(Pair("Producto",ProductosDto
+                /*arrayListOf(Pair("Producto",ProductosDto
                     (producto!!.imageId,producto!!.nombre_producto,producto!!.precio_producto))
-                )
+                )*/
             )
         }
     }
@@ -81,11 +77,10 @@ class Carrito : AppCompatActivity(){
             .get()
             .addOnSuccessListener {
                 for (document in it){
-
                     var producto = document.toObject(ProductosDto::class.java)
                     producto!!.imageId = document.get("Imagen").toString()
                     producto!!.nombre_producto = document.get("NombreProducto").toString()
-                    producto!!.precio_producto = document.get("Precio").toString()
+                    producto!!.precio_producto = document.getDouble("Precio")!!
 
                     productoArrayList.add(producto)
                     adaptadorCarrito?.notifyDataSetChanged()

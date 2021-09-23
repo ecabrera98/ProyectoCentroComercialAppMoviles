@@ -6,41 +6,77 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.centrocomercialonline.adapters.AdapterCarrito
 import com.example.centrocomercialonline.dto.ProductosDto
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
 class Pedido : AppCompatActivity(){
     private lateinit var adaptadorCarrito: AdapterCarrito
-
+    private lateinit var productoArrayList : ArrayList<ProductosDto>
     private lateinit var recyclerView: RecyclerView
-
+    private val title by lazy { findViewById<TextView>(R.id.title1) }
+    private val menu by lazy { findViewById<ChipNavigationBar>(R.id.bottom_menu1) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pedido)
 
-        val producto = intent.getParcelableExtra<ProductosDto>("Producto")
-        var itemList: ArrayList<ProductosDto>
-        itemList = arrayListOf()
+        menu.setOnItemSelectedListener { id ->
+            val option = when (id) {
+                R.id.home -> irActividad(Tiendas::class.java)  to "Inicio"
+                R.id.buscar -> irActividad(BuscarProducto::class.java) to "Buscar"
+                R.id.carrito -> irActividad(Carrito::class.java) to "Carrito"
+                R.id.perfil -> irActividad(PerfilUsuario::class.java)  to "Perfil"
+                else -> R.color.white to ""
+            }
+            title.text = option.second
+        }
 
-        Log.i("Detalle0","${producto!!.imageId}")
-        itemList.add(ProductosDto(producto!!.imageId,producto.nombre_producto,producto.precio_producto))
-        //itemList.add(ProductosDto("camiseta1","camiseta","360"))
+        if (savedInstanceState == null) {
+            menu.showBadge(R.id.home)
+            menu.showBadge(R.id.perfil, 32)
+        }
         recyclerView = findViewById(R.id.rcv_pedido)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
-        adaptadorCarrito = AdapterCarrito(itemList,this)
+        productoArrayList = arrayListOf()
+        adaptadorCarrito = AdapterCarrito(productoArrayList,this)
 
         recyclerView.adapter = adaptadorCarrito
+        cargarProductoCarrito()
 
         val botonTarjeta = findViewById<Button>(R.id.btn_metodo_pago)
         botonTarjeta.setOnClickListener {irActividad(MetodoPago::class.java) }
 
     }
 
+    fun cargarProductoCarrito(){
+        val db = Firebase.firestore
+        val referencia = db.collection("carrito")
+        referencia
+            .get()
+            .addOnSuccessListener {
+                for (document in it){
+                    var producto = document.toObject(ProductosDto::class.java)
+                    producto!!.imageId = document.get("Imagen").toString()
+                    producto!!.nombre_producto = document.get("NombreProducto").toString()
+                    producto!!.precio_producto = document.getDouble("Precio")!!
+
+                    productoArrayList.add(producto)
+                    adaptadorCarrito?.notifyDataSetChanged()
+                }
+            }
+            .addOnFailureListener {
+                Log.i("CARRITO", "FALLO")
+            }
+
+    }
 
     fun irActividad(
         clase: Class<*>,

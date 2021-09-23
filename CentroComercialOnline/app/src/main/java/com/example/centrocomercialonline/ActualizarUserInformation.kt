@@ -1,5 +1,6 @@
 package com.example.centrocomercialonline
 
+
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,87 +10,46 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import com.example.centrocomercialonline.dto.BAuthUsuario
-import com.example.centrocomercialonline.dto.BUsuarioFirebase
 import com.example.centrocomercialonline.dto.UsuarioDto
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
-
-class PerfilUsuario : AppCompatActivity() {
-
-    private val title by lazy { findViewById<TextView>(R.id.title1) }
-    private val menu by lazy { findViewById<ChipNavigationBar>(R.id.bottom_menu1) }
-
+class ActualizarUserInformation : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_perfil_usuario)
-
-
-        menu.setOnItemSelectedListener { id ->
-            val option = when (id) {
-                R.id.home -> irActividad(Tiendas::class.java)  to "Inicio"
-                R.id.buscar -> R.color.colorSecundary to "Buscar"
-                R.id.carrito -> irActividad(Carrito::class.java) to "Carrito"
-                R.id.perfil -> irActividad(PerfilUsuario::class.java)  to "Perfil"
-                else -> R.color.white to ""
-            }
-
-            title.text = option.second
-        }
-
-
-        if (savedInstanceState == null) {
-            menu.showBadge(R.id.home)
-            menu.showBadge(R.id.perfil, 32)
-        }
+        setContentView(R.layout.activity_actualizar_user)
+        val botonActualizarUsuario = findViewById<Button>(
+            R.id.actualizar
+        )
 
         setearUsuarioFirebase()
 
-        val botonIrMetodosPago= findViewById<TextView>(R.id.textViewMetodosPago)
-        botonIrMetodosPago.setOnClickListener {
-            irActividad(MetodoPago::class.java)
-        }
+        botonActualizarUsuario
+            .setOnClickListener {
+                actualizarUsuario()
+                irActividad(PerfilUsuario::class.java)
+            }
 
-        val botonActualizarPerfil= findViewById<TextView>(R.id.textViewEditarPerfil)
-        botonActualizarPerfil.setOnClickListener {
-            irActividad(ActualizarUserInformation::class.java)
-        }
-
-        val botonNotificaciones= findViewById<TextView>(R.id.textViewNotificaciones)
-        botonNotificaciones.setOnClickListener {
-            irActividad(Notificaciones::class.java)
-        }
-
-        val botonCerrarSesion = findViewById<Button>(R.id.btnCerrarSesion)
-        botonCerrarSesion.setOnClickListener{
-            val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
-            prefs.clear()
-            prefs.apply()
-            FirebaseAuth.getInstance().signOut()
-            onBackPressed()
-            irActividad(MainActivity::class.java)
-
-        }
 
     }
-
-
     fun setearUsuarioFirebase(){
         val instanciaAuth = FirebaseAuth.getInstance()
         val usuarioLocal = instanciaAuth.currentUser
-        val editTextEmail = findViewById<TextView>(R.id.txtCorreoUsuario)
-        val editTextNombreUsuario = findViewById<TextView>(R.id.txtNombreUsuario)
-
+        val editTextEmail = findViewById<TextView>(R.id.emailcapturado1)
+        val editTextFecha = findViewById<TextView>(R.id.fechanacimiento1)
+        var editTextNombreUsuario = findViewById<EditText>(R.id.username1)
+        var editTextTelefono = findViewById<EditText>(R.id.telefono1)
         if (usuarioLocal != null) {
             if(usuarioLocal.email != null){
                 val db = Firebase.firestore
                 db.collection("usuarios").document(usuarioLocal.email.toString()).get()
                     .addOnSuccessListener {
                         editTextEmail.setText(it.get("Email") as String?)
+                        editTextFecha.setText(it.get("Fecha de Nacimiento") as String?)
                         editTextNombreUsuario.setText(it.get("Nombre") as String?)
+                        editTextTelefono.setText(it.get("Teléfono") as String?)
                         Log.i("firestore-usuarios", "Se estrajó el usuario con éxito")
                     }
                     .addOnFailureListener {
@@ -98,6 +58,38 @@ class PerfilUsuario : AppCompatActivity() {
             }
         }
     }
+
+
+    fun actualizarUsuario(){
+        val instanciaAuth = FirebaseAuth.getInstance()
+        val usuarioLocal = instanciaAuth.currentUser
+        setearUsuarioFirebase()
+        val editTextEmail = findViewById<TextView>(R.id.emailcapturado1)
+        val editTextFecha = findViewById<TextView>(R.id.fechanacimiento1)
+        var editTextNombreUsuario = findViewById<EditText>(R.id.username1)
+        var editTextTelefono = findViewById<EditText>(R.id.telefono1)
+
+            val usuarioActualizado = hashMapOf<String,Any>(
+                "Email" to editTextEmail.text.toString(),
+                "Nombre" to editTextNombreUsuario.text.toString(),
+                "Fecha de Nacimiento" to editTextFecha.text.toString(),
+                "Teléfono" to editTextTelefono.text.toString(),
+
+        )
+
+        val db = FirebaseFirestore.getInstance()
+        db.collection("usuarios")
+            .document(usuarioLocal!!.email.toString())
+            .set(
+                usuarioActualizado
+            )
+            .addOnSuccessListener {
+                editTextNombreUsuario.clearFocus()
+                editTextTelefono.clearFocus()
+            }
+
+    }
+
 
 
     fun irActividad(
@@ -139,8 +131,6 @@ class PerfilUsuario : AppCompatActivity() {
             startActivityForResult(intentExplicito, codigo)
         } else {
             startActivity(intentExplicito)
-
         }
     }
-
 }

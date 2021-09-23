@@ -32,7 +32,7 @@ class AdapterCarrito (private val itemList : ArrayList<ProductosDto>, val contex
             .load(storageRef)
             .into(icon)
 
-        var mMenus: LinearLayout = holder.itemView.findViewById(R.id.linearLayoutcarrito)
+        var mMenus: RelativeLayout = holder.itemView.findViewById(R.id.relativeLayoutcarrito)
         mMenus.setOnClickListener {
             holder.popupMenus(it)
         }
@@ -49,13 +49,12 @@ class AdapterCarrito (private val itemList : ArrayList<ProductosDto>, val contex
             val precio: TextView = itemView.findViewById(R.id.txv_precio)
 
             producto.text = model.nombre_producto
-            precio.text = model.precio_producto
+            precio.text = model.precio_producto.toString()
 
         }
 
         fun popupMenus(v:View) {
-            var  posicionElementoSeleccionado: Int = 0
-            val position = itemList[posicionElementoSeleccionado]
+            val position = itemList[adapterPosition]
             val popupMenus = PopupMenu(context,v)
             popupMenus.inflate(R.menu.menuproducto)
             popupMenus.setOnMenuItemClickListener {
@@ -68,7 +67,7 @@ class AdapterCarrito (private val itemList : ArrayList<ProductosDto>, val contex
                                     dialog,_->
                                 itemList.removeAt(adapterPosition)
                                 notifyDataSetChanged()
-                                Toast.makeText(context,"Elemento eliminado exitosamente ${position}",Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context,"Elemento eliminado exitosamente ${position.imageId}",Toast.LENGTH_SHORT).show()
                                 dialog.dismiss()
                                 val db = FirebaseFirestore.getInstance()
                                 db.collection("carrito")

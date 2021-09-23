@@ -8,9 +8,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.Glide
 import com.bumptech.glide.Glide.with
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.with
 import com.example.centrocomercialonline.dto.ProductosDto
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -31,13 +29,13 @@ class DetalleProductos : AppCompatActivity() {
 
         val intent = intent
         val nombreProducto = intent.getStringExtra("iNombre")
-        val precioProducto = intent.getStringExtra("iPrecio")
+        val precioProducto = intent.getDoubleExtra("iPrecio",0.0)
         val catProducto = intent.getStringExtra("iCat")
         val descProducto = intent.getStringExtra("iDesc")
         val imagenProducto = intent.getStringExtra("iIma")
 
         nombre.text = nombreProducto
-        precio.text = precioProducto
+        var ingresoPrecio: Double = precioProducto
         categoria.text = catProducto
         detalle.text = descProducto
 
@@ -50,19 +48,19 @@ class DetalleProductos : AppCompatActivity() {
         carito.setOnClickListener {
             irActividad(Carrito::class.java,
                 arrayListOf(Pair("Producto",ProductosDto
-                    (imagenProducto!!,nombreProducto!!,precioProducto!!))
+                    (imagenProducto!!,nombreProducto!!,precioProducto))
                 )
             )
-            val nuevaPersona = hashMapOf<String, Any>(
+            val nuevoProducto = hashMapOf<String, Any>(
                 "Imagen" to imagenProducto.toString(),
                 "NombreProducto" to nombre.text,
-                "Precio" to precio.text,
+                "Precio" to ingresoPrecio,
             )
             val db = Firebase.firestore
             val referencia = db.collection("carrito")
-
             referencia
-                .add(nuevaPersona)
+                .document(imagenProducto)
+                .set(nuevoProducto)
                 .addOnSuccessListener {
                     Log.i("firestore-persona", "Valio carrito")
                 }

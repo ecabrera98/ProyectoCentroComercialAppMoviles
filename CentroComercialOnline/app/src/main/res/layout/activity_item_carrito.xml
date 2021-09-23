@@ -12,6 +12,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/relativeLayoutcarrito"
             android:layout_width="match_parent"
             android:layout_height="150dp">
 

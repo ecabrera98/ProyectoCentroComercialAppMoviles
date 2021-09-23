@@ -40,7 +40,7 @@ class AdapterProduct (private val productList : ArrayList<BProductosFirebase>, v
 
         productos.setOnClickListener{
             var nombreProducto: String = model.nombre_producto
-            var precioProducto: String = model.precio_producto
+            var precioProducto: Double = model.precio_producto
             var categoriaProducto: String = model.descripcion_categoria
             var descripcionProducto: String = model.descripcion_producto
 
@@ -68,7 +68,7 @@ class AdapterProduct (private val productList : ArrayList<BProductosFirebase>, v
             val precio : TextView = itemView.findViewById(R.id.subtitle)
 
             nombre.text = model.nombre_producto
-            precio.text = model.precio_producto
+            precio.text = model.precio_producto.toString()
         }
 
 

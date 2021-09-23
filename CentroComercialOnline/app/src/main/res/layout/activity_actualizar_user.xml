@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterUserInformation">
+    tools:context=".ActualizarUserInformation">
 
     <TextView
-        android:id="@+id/para_empeza1"
+        android:id="@+id/actualizaruser"
         android:layout_width="331dp"
         android:layout_height="44dp"
         android:layout_alignParentLeft="true"
@@ -15,16 +15,18 @@
         android:layout_marginTop="16dp"
         android:gravity="top"
         android:lineSpacingExtra="0sp"
-        android:text="Bienvenido"
+        android:text="Actualizar Perfil"
+        android:textAlignment="center"
         android:textAppearance="@style/para_empeza"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlCompat" />
 
 
     <TextView
-        android:id="@+id/reg_strese_2"
+        android:id="@+id/txt_actualizar"
         android:layout_width="347dp"
         android:layout_height="121dp"
         android:layout_alignParentLeft="true"
@@ -32,16 +34,18 @@
         android:layout_marginTop="60dp"
         android:gravity="top"
         android:lineSpacingExtra="2sp"
-        android:text="@string/finalregistro"
+        android:text="@string/actualizaruser"
+        android:textAlignment="center"
         android:textAppearance="@style/reg_strese_"
         android:textSize="24sp"
         android:translationY="-0.97sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/para_empeza1" />
+        app:layout_constraintTop_toTopOf="@+id/actualizaruser"
+        tools:ignore="RtlCompat" />
 
     <TextView
-        android:id="@+id/emailcapturado"
+        android:id="@+id/emailcapturado1"
         android:layout_width="314dp"
         android:layout_height="49dp"
         android:layout_marginTop="228dp"
@@ -55,105 +59,99 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="309dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="220dp"
-        android:layout_marginEnd="24dp"
-        android:hint="Nombre de Usuario"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp"
-        android:selectAllOnFocus="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/reg_strese_2" />
-
-    <EditText
-        android:id="@+id/fechanacimiento"
+    <TextView
+        android:id="@+id/fechanacimiento1"
         android:layout_width="312dp"
-        android:layout_height="43dp"
+        android:layout_height="48dp"
         android:layout_marginTop="28dp"
         android:hint="Fecha de Nacimiento(dd/mm/aa)"
         android:inputType="date"
         android:minHeight="48dp"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.797"
+        app:layout_constraintHorizontal_bias="0.838"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/emailcapturado1" />
 
     <EditText
-        android:id="@+id/telefono"
+        android:id="@+id/username1"
         android:layout_width="309dp"
         android:layout_height="49dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Nombre de Usuario"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fechanacimiento1" />
+
+    <EditText
+        android:id="@+id/telefono1"
+        android:layout_width="309dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="20dp"
         android:hint="Telefono Celular"
         android:inputType="phone"
         android:minHeight="48dp"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/fechanacimiento" />
-
-    <CheckBox
-        android:id="@+id/checkBox1"
-        android:layout_width="310dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="24dp"
-        android:text="Guardar Inicio de Sesión"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.584"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/telefono" />
+        app:layout_constraintTop_toBottomOf="@+id/username1" />
 
     <Button
-        android:id="@+id/registrarse2"
+        android:id="@+id/actualizar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:layout_marginTop="54dp"
-        android:layout_marginBottom="64dp"
-        android:text="Iniciar Sesión"
+        android:layout_marginBottom="108dp"
+        android:text="Actualizar Perfil"
         android:textColor="#FDF1F1"
         app:backgroundTint="#0008C7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/checkBox1"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/imageViewEA"
         android:layout_width="54dp"
         android:layout_height="45dp"
         android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.022"
+        app:layout_constraintEnd_toStartOf="@+id/emailcapturado1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reg_strese_2"
+        app:layout_constraintTop_toBottomOf="@+id/txt_actualizar"
         app:srcCompat="@drawable/iconsemail" />
 
     <ImageView
-        android:id="@+id/imageView11"
+        android:id="@+id/imageViewUA"
         android:layout_width="47dp"
         android:layout_height="41dp"
-        android:layout_marginTop="220dp"
-        app:layout_constraintEnd_toStartOf="@+id/username"
-        app:layout_constraintHorizontal_bias="0.428"
+        android:layout_marginTop="112dp"
+        app:layout_constraintEnd_toStartOf="@+id/username1"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/reg_strese_2"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewEA"
         app:srcCompat="@drawable/iconsusuario" />
 
     <ImageView
-        android:id="@+id/imageView12"
+        android:id="@+id/imageViewWA"
         android:layout_width="36dp"
         android:layout_height="53dp"
-        android:layout_marginTop="72dp"
-        app:layout_constraintEnd_toStartOf="@+id/telefono"
-        app:layout_constraintHorizontal_bias="0.615"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/telefono1"
+        app:layout_constraintHorizontal_bias="0.434"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/fechanacimiento"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewUA"
         app:srcCompat="@drawable/iconswhatsapp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="650dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

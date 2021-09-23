@@ -27,7 +27,7 @@ class MetodoPago : AppCompatActivity(), AdapterMetodoPago.ClickListener {
         menu.setOnItemSelectedListener { id ->
             val option = when (id) {
                 R.id.home -> irActividad(Tiendas::class.java)  to "Inicio"
-                R.id.buscar -> R.color.colorSecundary to "Buscar"
+                R.id.buscar -> irActividad(BuscarProducto::class.java) to "Buscar"
                 R.id.carrito -> irActividad(Carrito::class.java) to "Carrito"
                 R.id.perfil -> irActividad(PerfilUsuario::class.java)  to "Perfil"
                 else -> R.color.white to ""
