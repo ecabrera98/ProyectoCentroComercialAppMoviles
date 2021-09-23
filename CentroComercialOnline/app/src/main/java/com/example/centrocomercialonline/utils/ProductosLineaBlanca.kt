@@ -1,7 +1,6 @@
 package com.example.centrocomercialonline.utils
 
 import android.content.Intent
-import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
@@ -21,8 +20,6 @@ import com.jama.carouselview.enums.IndicatorAnimationType
 import com.jama.carouselview.enums.OffsetType
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import java.io.File
 
 class ProductosLineaBlanca : AppCompatActivity() {
     var db = Firebase.firestore
@@ -41,7 +38,7 @@ class ProductosLineaBlanca : AppCompatActivity() {
         menu.setOnItemSelectedListener { id ->
             val option = when (id) {
                 R.id.home -> irActividad(Tiendas::class.java)  to "Inicio"
-                R.id.buscar -> R.color.colorSecundary to "Buscar"
+                R.id.buscar -> irActividad(BuscarProducto::class.java) to "Buscar"
                 R.id.carrito -> irActividad(Carrito::class.java) to "Carrito"
                 R.id.perfil -> irActividad(PerfilUsuario::class.java)  to "Perfil"
                 else -> R.color.white to ""

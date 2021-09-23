@@ -5,13 +5,10 @@ import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.centrocomercialonline.utils.*
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import com.jama.carouselview.CarouselView
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
@@ -35,8 +32,8 @@ class CategoriasRopa : AppCompatActivity() {
         menu.setOnItemSelectedListener { id ->
             val option = when (id) {
                 R.id.home -> irActividad(Tiendas::class.java)  to "Inicio"
-                R.id.buscar -> R.color.colorSecundary to "Buscar"
-                R.id.carrito -> R.color.colorTres to "Carrito"
+                R.id.buscar -> irActividad(BuscarProducto::class.java) to "Buscar"
+                R.id.carrito -> irActividad(Carrito::class.java) to "Carrito"
                 R.id.perfil -> irActividad(PerfilUsuario::class.java)  to "Perfil"
                 else -> R.color.white to ""
             }
@@ -137,9 +134,9 @@ class CategoriasRopa : AppCompatActivity() {
             autoPlayDelay = 3000
             resource = R.layout.start_carousel_elects_item
             setCarouselViewListener { view, position ->
-                val imageView1 = view.findViewById<ImageView>(R.id.imageView)
-                imageView1.setImage(CarouselItem(imagesElect3[position]))
-                imageView1.setOnClickListener {
+                val imageView3 = view.findViewById<ImageView>(R.id.imageView)
+                imageView3.setImage(CarouselItem(imagesElect3[position]))
+                imageView3.setOnClickListener {
                     irActividad(ProductosJeans::class.java)
                 }
                 val textView = view.findViewById<TextView>(R.id.textViewTitle)
@@ -154,9 +151,9 @@ class CategoriasRopa : AppCompatActivity() {
             autoPlayDelay = 3000
             resource = R.layout.start_carousel_elects_item
             setCarouselViewListener { view, position ->
-                val imageView2 = view.findViewById<ImageView>(R.id.imageView)
-                imageView2.setImage(CarouselItem(imagesElect4[position]))
-                imageView2.setOnClickListener {
+                val imageView4 = view.findViewById<ImageView>(R.id.imageView)
+                imageView4.setImage(CarouselItem(imagesElect4[position]))
+                imageView4.setOnClickListener {
                     irActividad(ProductosChaquetas::class.java)
                 }
                 val textView = view.findViewById<TextView>(R.id.textViewTitle)
@@ -166,19 +163,6 @@ class CategoriasRopa : AppCompatActivity() {
         }
     }
 
-    /*fun setearUsuarioFirebase(){
-        val db = Firebase.firestore
-        if (SharedPreferenceUtils(this).getCategoryItem() != "null") {
-            database = FirebaseDatabase.getInstance()
-            // allFoodData= database.getReference("AllFood/flower");
-            allFoodData = database!!.getReference("AllFood/" + SharedPreferenceUtils(this).getCategoryItem())
-//            progressDialog?.show()
-            CustomProgressBar.showProgressbar()
-        } else {
-
-        }
-
-    }*/
 
     fun irActividad(
         clase: Class<*>,

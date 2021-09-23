@@ -100,10 +100,6 @@ class BuscarProducto : AppCompatActivity() {
         return  super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
-    }
-
     private fun getUserData() {
         db = FirebaseFirestore.getInstance()
         db.collection("productos")

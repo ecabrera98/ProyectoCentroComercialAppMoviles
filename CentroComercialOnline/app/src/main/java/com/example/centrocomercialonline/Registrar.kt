@@ -21,7 +21,6 @@ import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
-
 class Registrar : AppCompatActivity() {
     private val GOOGLE_SIGN_IN = 100
     private val callbackManager = CallbackManager.Factory.create()

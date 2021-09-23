@@ -10,9 +10,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import com.example.centrocomercialonline.dto.BAuthUsuario.Companion.usuario
-import com.example.centrocomercialonline.dto.UsuarioDto
-import com.google.firebase.auth.FirebaseAuth
+import com.example.centrocomercialonline.dto.UsuariosDto
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -64,7 +62,7 @@ class RegisterUserInformation : AppCompatActivity() {
             val referencia = db.collection("usuarios").get()
         referencia.addOnSuccessListener{
                 for (document in it) {
-                    var usuario = document.toObject(UsuarioDto::class.java)
+                    var usuario = document.toObject(UsuariosDto::class.java)
                     usuario.email = document.id
                     if (document.id != identificadorUsuario) {
                         db.collection("usuarios")

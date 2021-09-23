@@ -10,11 +10,11 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.centrocomercialonline.R
-import com.example.centrocomercialonline.dto.ProductosDto
+import com.example.centrocomercialonline.dto.ProductosCarritoDto
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 
-class AdapterCarrito (private val itemList : ArrayList<ProductosDto>, val context : Context) : RecyclerView.Adapter<AdapterCarrito.MyViewHolder>() {
+class AdapterCarrito (private val itemList : ArrayList<ProductosCarritoDto>, val context : Context) : RecyclerView.Adapter<AdapterCarrito.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.activity_item_carrito, parent, false)
         return MyViewHolder(itemView)
@@ -44,7 +44,7 @@ class AdapterCarrito (private val itemList : ArrayList<ProductosDto>, val contex
     }
 
     inner class MyViewHolder(parent: View) : RecyclerView.ViewHolder(parent) {
-        fun bindItems(model: ProductosDto) {
+        fun bindItems(model: ProductosCarritoDto) {
             val producto: TextView = itemView.findViewById(R.id.txv_nombre_producto)
             val precio: TextView = itemView.findViewById(R.id.txv_precio)
 

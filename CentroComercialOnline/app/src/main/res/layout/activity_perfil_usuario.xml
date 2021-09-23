@@ -34,11 +34,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.mikhaellopez.circularimageview.CircularImageView
-        android:id="@+id/circularImageView"
+        android:id="@+id/imagenPerfil"
         android:layout_width="118dp"
         android:layout_height="132dp"
         android:layout_marginTop="84dp"
-        android:src="@drawable/joss"
+        android:src="@drawable/perfiluser"
         app:civ_border_color="#3f51b5"
         app:civ_border_width="4dp"
         app:civ_shadow="true"
@@ -94,7 +94,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.138"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/circularImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imagenPerfil" />
 
     <TextView
         android:id="@+id/textViewEditarPerfil"
@@ -109,7 +109,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewMetodosPago" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imagenPago"
         android:layout_width="86dp"
         android:layout_height="44dp"
         android:layout_marginTop="236dp"
@@ -120,23 +120,23 @@
         app:srcCompat="@drawable/cardpago" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/imagenNotificaciones"
         android:layout_width="41dp"
         android:layout_height="37dp"
         android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toEndOf="@+id/textViewNotificaciones"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        app:layout_constraintTop_toBottomOf="@+id/imagenEditarPerfil"
         app:srcCompat="@drawable/norificaciones" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/imagenEditarPerfil"
         android:layout_width="70dp"
         android:layout_height="41dp"
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewEditarPerfil"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imagenPago"
         app:srcCompat="@drawable/configurarperfil" />
 </androidx.constraintlayout.widget.ConstraintLayout>

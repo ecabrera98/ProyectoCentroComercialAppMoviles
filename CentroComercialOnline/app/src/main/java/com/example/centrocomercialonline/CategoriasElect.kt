@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.centrocomercialonline.utils.ProductosAudioVideo
@@ -12,19 +11,14 @@ import com.example.centrocomercialonline.utils.ProductosEntretenimiento
 import com.example.centrocomercialonline.utils.ProductosLineaBlanca
 import com.example.centrocomercialonline.utils.ProductosMovilidad
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
-import com.jama.carouselview.CarouselItemDecoration
 import com.jama.carouselview.CarouselView
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 import org.imaginativeworld.whynotimagecarousel.utils.setImage
 
 class CategoriasElect : AppCompatActivity(){
 
-    private val container by lazy { findViewById<View>(R.id.containerRegistrar) }
     private val title by lazy { findViewById<TextView>(R.id.title1) }
     private val menu by lazy { findViewById<ChipNavigationBar>(R.id.bottom_menu1) }
-
-    private var lastColor: Int = 0
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +27,8 @@ class CategoriasElect : AppCompatActivity(){
         menu.setOnItemSelectedListener { id ->
             val option = when (id) {
                 R.id.home -> irActividad(Tiendas::class.java)  to "Inicio"
-                R.id.buscar -> R.color.colorSecundary to "Buscar"
-                R.id.carrito -> R.color.colorTres to "Carrito"
+                R.id.buscar -> irActividad(BuscarProducto::class.java) to "Buscar"
+                R.id.carrito -> irActividad(Carrito::class.java) to "Carrito"
                 R.id.perfil -> irActividad(PerfilUsuario::class.java)  to "Perfil"
                 else -> R.color.white to ""
             }

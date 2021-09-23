@@ -9,11 +9,6 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
-import com.jama.carouselview.CarouselView
-import com.jama.carouselview.enums.IndicatorAnimationType
-import com.jama.carouselview.enums.OffsetType
-
-
 
 class Tiendas : AppCompatActivity(){
 

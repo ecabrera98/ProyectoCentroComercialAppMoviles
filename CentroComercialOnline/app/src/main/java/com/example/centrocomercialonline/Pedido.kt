@@ -10,14 +10,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.centrocomercialonline.adapters.AdapterCarrito
-import com.example.centrocomercialonline.dto.ProductosDto
+import com.example.centrocomercialonline.dto.ProductosCarritoDto
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
 class Pedido : AppCompatActivity(){
     private lateinit var adaptadorCarrito: AdapterCarrito
-    private lateinit var productoArrayList : ArrayList<ProductosDto>
+    private lateinit var productoArrayList : ArrayList<ProductosCarritoDto>
     private lateinit var recyclerView: RecyclerView
     private val title by lazy { findViewById<TextView>(R.id.title1) }
     private val menu by lazy { findViewById<ChipNavigationBar>(R.id.bottom_menu1) }
@@ -63,7 +63,7 @@ class Pedido : AppCompatActivity(){
             .get()
             .addOnSuccessListener {
                 for (document in it){
-                    var producto = document.toObject(ProductosDto::class.java)
+                    var producto = document.toObject(ProductosCarritoDto::class.java)
                     producto!!.imageId = document.get("Imagen").toString()
                     producto!!.nombre_producto = document.get("NombreProducto").toString()
                     producto!!.precio_producto = document.getDouble("Precio")!!

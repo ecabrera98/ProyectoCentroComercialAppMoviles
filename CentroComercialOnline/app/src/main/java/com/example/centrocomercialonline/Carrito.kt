@@ -5,17 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
-import android.view.ContextMenu
-import android.view.MenuItem
-import android.view.View
-import android.widget.AdapterView
-import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.centrocomercialonline.adapters.AdapterCarrito
-import com.example.centrocomercialonline.dto.ProductosDto
-import com.google.firebase.firestore.FirebaseFirestore
+import com.example.centrocomercialonline.dto.ProductosCarritoDto
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
@@ -23,7 +17,7 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar
 class Carrito : AppCompatActivity(){
     private lateinit var adaptadorCarrito: AdapterCarrito
     private lateinit var recyclerView: RecyclerView
-    private lateinit var productoArrayList : ArrayList<ProductosDto>
+    private lateinit var productoArrayList : ArrayList<ProductosCarritoDto>
     private val title by lazy { findViewById<TextView>(R.id.title1) }
     private val menu by lazy { findViewById<ChipNavigationBar>(R.id.bottom_menu1) }
 
@@ -77,7 +71,7 @@ class Carrito : AppCompatActivity(){
             .get()
             .addOnSuccessListener {
                 for (document in it){
-                    var producto = document.toObject(ProductosDto::class.java)
+                    var producto = document.toObject(ProductosCarritoDto::class.java)
                     producto!!.imageId = document.get("Imagen").toString()
                     producto!!.nombre_producto = document.get("NombreProducto").toString()
                     producto!!.precio_producto = document.getDouble("Precio")!!

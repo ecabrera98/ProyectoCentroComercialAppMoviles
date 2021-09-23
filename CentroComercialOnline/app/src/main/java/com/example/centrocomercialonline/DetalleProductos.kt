@@ -9,7 +9,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide.with
-import com.example.centrocomercialonline.dto.ProductosDto
+import com.example.centrocomercialonline.dto.ProductosCarritoDto
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -22,7 +22,6 @@ class DetalleProductos : AppCompatActivity() {
 
 
         val nombre = findViewById<TextView>(R.id.tv_nombre_producto)
-        val precio = findViewById<TextView>(R.id.tv_precio_producto)
         val categoria = findViewById<TextView>(R.id.tv_categoria_producto)
         val detalle = findViewById<TextView>(R.id.tv_descripcion_producto)
         val imagen = findViewById<ImageView>(R.id.iv_product)
@@ -47,7 +46,7 @@ class DetalleProductos : AppCompatActivity() {
         val carito = findViewById<Button>(R.id.tv_cart)
         carito.setOnClickListener {
             irActividad(Carrito::class.java,
-                arrayListOf(Pair("Producto",ProductosDto
+                arrayListOf(Pair("Producto",ProductosCarritoDto
                     (imagenProducto!!,nombreProducto!!,precioProducto))
                 )
             )

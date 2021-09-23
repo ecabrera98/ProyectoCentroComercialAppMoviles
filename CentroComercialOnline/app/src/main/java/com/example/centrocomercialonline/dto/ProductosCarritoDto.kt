@@ -3,7 +3,7 @@ package com.example.centrocomercialonline.dto
 import android.os.Parcel
 import android.os.Parcelable
 
-data class ProductosDto(
+data class ProductosCarritoDto(
     var imageId:String = "",
     var nombre_producto: String = "",
     var precio_producto: Double = 0.0
@@ -25,12 +25,12 @@ data class ProductosDto(
         dest.writeDouble(precio_producto)
     }
 
-    companion object CREATOR : Parcelable.Creator<ProductosDto> {
-        override fun createFromParcel(parcel: Parcel): ProductosDto {
-            return ProductosDto(parcel)
+    companion object CREATOR : Parcelable.Creator<ProductosCarritoDto> {
+        override fun createFromParcel(parcel: Parcel): ProductosCarritoDto {
+            return ProductosCarritoDto(parcel)
         }
 
-        override fun newArray(size: Int): Array<ProductosDto?> {
+        override fun newArray(size: Int): Array<ProductosCarritoDto?> {
             return arrayOfNulls(size)
         }
     }

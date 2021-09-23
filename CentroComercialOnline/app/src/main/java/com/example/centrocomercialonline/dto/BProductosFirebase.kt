@@ -7,5 +7,5 @@ data class BProductosFirebase(
     var descripcion_producto: String = "",
     var nombre_tienda: String = "",
     var descripcion_categoria: String ="",
-    var imageName: String =""
+    var imageName: String ="",
 )

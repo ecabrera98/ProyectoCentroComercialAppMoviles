@@ -7,14 +7,13 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
 import android.widget.Button
-import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
-import com.example.centrocomercialonline.dto.BAuthUsuario
-import com.example.centrocomercialonline.dto.BUsuarioFirebase
-import com.example.centrocomercialonline.dto.UsuarioDto
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
 
@@ -31,7 +30,7 @@ class PerfilUsuario : AppCompatActivity() {
         menu.setOnItemSelectedListener { id ->
             val option = when (id) {
                 R.id.home -> irActividad(Tiendas::class.java)  to "Inicio"
-                R.id.buscar -> R.color.colorSecundary to "Buscar"
+                R.id.buscar -> irActividad(BuscarProducto::class.java) to "Buscar"
                 R.id.carrito -> irActividad(Carrito::class.java) to "Carrito"
                 R.id.perfil -> irActividad(PerfilUsuario::class.java)  to "Perfil"
                 else -> R.color.white to ""
@@ -90,7 +89,14 @@ class PerfilUsuario : AppCompatActivity() {
                     .addOnSuccessListener {
                         editTextEmail.setText(it.get("Email") as String?)
                         editTextNombreUsuario.setText(it.get("Nombre") as String?)
-                        Log.i("firestore-usuarios", "Se estrajó el usuario con éxito")
+                        var imagenName = usuarioLocal.email.toString()
+                        val imagen =  findViewById<ImageView>(R.id.imagenPerfil)
+                        val storageRef = FirebaseStorage.getInstance().reference.child("perfilesusuarios/$imagenName.jpeg")
+                        Glide.with(this)
+                            .load(storageRef)
+                            .into(imagen)
+
+                        Log.i("firestore-usuarios", "Se estrajó el usuario con éxito $imagenName")
                     }
                     .addOnFailureListener {
                         Log.i("firestore-usuarios", "Falló: $it")

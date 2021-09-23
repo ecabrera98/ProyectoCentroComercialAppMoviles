@@ -1,6 +1,5 @@
 package com.example.centrocomercialonline
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
@@ -8,7 +7,6 @@ import android.os.Parcelable
 import android.view.View
 import android.widget.Button
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.centrocomercialonline.dto.BAuthUsuario
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
