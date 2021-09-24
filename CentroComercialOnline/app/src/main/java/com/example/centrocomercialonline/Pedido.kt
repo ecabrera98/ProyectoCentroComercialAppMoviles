@@ -61,7 +61,7 @@ class Pedido : AppCompatActivity(){
         val instanciaAuth = FirebaseAuth.getInstance()
         val usuarioLocal = instanciaAuth.currentUser
         val db = Firebase.firestore
-        val referencia = db.collection("carrito${usuarioLocal!!.email.toString()}")
+        val referencia = db.collection("carrito_${usuarioLocal!!.email.toString()}")
         referencia
             .get()
             .addOnSuccessListener {

@@ -59,7 +59,7 @@ class DetalleProductos : AppCompatActivity() {
             val db = Firebase.firestore
             val instanciaAuth = FirebaseAuth.getInstance()
             val usuarioLocal = instanciaAuth.currentUser
-            val referencia = db.collection("carrito${usuarioLocal!!.email.toString()}")
+            val referencia = db.collection("carrito_${usuarioLocal!!.email.toString()}")
             referencia
                 .document(imagenProducto)
                 .set(nuevoProducto)
