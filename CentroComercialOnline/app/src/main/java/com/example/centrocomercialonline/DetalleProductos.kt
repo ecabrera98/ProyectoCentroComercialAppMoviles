@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide.with
 import com.example.centrocomercialonline.dto.ProductosCarritoDto
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -56,7 +57,9 @@ class DetalleProductos : AppCompatActivity() {
                 "Precio" to ingresoPrecio,
             )
             val db = Firebase.firestore
-            val referencia = db.collection("carrito")
+            val instanciaAuth = FirebaseAuth.getInstance()
+            val usuarioLocal = instanciaAuth.currentUser
+            val referencia = db.collection("carrito${usuarioLocal!!.email.toString()}")
             referencia
                 .document(imagenProducto)
                 .set(nuevoProducto)

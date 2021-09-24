@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.centrocomercialonline.adapters.AdapterCarrito
 import com.example.centrocomercialonline.dto.ProductosCarritoDto
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
@@ -57,8 +58,10 @@ class Pedido : AppCompatActivity(){
     }
 
     fun cargarProductoCarrito(){
+        val instanciaAuth = FirebaseAuth.getInstance()
+        val usuarioLocal = instanciaAuth.currentUser
         val db = Firebase.firestore
-        val referencia = db.collection("carrito")
+        val referencia = db.collection("carrito${usuarioLocal!!.email.toString()}")
         referencia
             .get()
             .addOnSuccessListener {
