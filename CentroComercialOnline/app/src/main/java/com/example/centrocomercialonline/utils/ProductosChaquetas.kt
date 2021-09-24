@@ -20,6 +20,8 @@ import com.jama.carouselview.enums.IndicatorAnimationType
 import com.jama.carouselview.enums.OffsetType
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
+import org.imaginativeworld.whynotimagecarousel.utils.setImage
 
 
 class ProductosChaquetas : AppCompatActivity() {
@@ -55,10 +57,11 @@ class ProductosChaquetas : AppCompatActivity() {
         }
 
         val imagesProducts = arrayListOf(
-            R.drawable.ropa2,
-            R.drawable.ropa3,
-            R.drawable.ropa1,
-            R.drawable.ropa3
+            "https://m.media-amazon.com/images/I/416fbyLaFKS._SL500_.jpg",
+            "https://bazar.ec/wp-content/uploads/2020/07/rBVaVl1TcAiATairAAgXXBmAZpM805.jpg",
+            "https://laovejanegra.sogamosocompravirtual.com/921-large_default/chaqueta-hombre-lana-de-oveja-talla-m.jpg",
+            "https://velavi.com/wp-content/uploads/2018/07/pp-conjunto-impermeable.jpg"
+
         )
         val carouselViewProductos = findViewById<CarouselView>(R.id.carouselViewProductos)
 
@@ -71,7 +74,7 @@ class ProductosChaquetas : AppCompatActivity() {
             carouselOffset = OffsetType.CENTER
             setCarouselViewListener { view, position ->
                 val imageView1 = view.findViewById<ImageView>(R.id.imageView)
-                imageView1.setImageDrawable(resources.getDrawable(imagesProducts[position]))
+                imageView1.setImage(CarouselItem(imagesProducts[position]))
                 imageView1.setOnClickListener {irActividad(CategoriasElect::class.java) }
             }
             show()

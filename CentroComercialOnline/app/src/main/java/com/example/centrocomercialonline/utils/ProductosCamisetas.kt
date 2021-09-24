@@ -22,6 +22,8 @@ import com.jama.carouselview.enums.OffsetType
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
+import org.imaginativeworld.whynotimagecarousel.utils.setImage
 import java.io.File
 
 class ProductosCamisetas : AppCompatActivity() {
@@ -54,10 +56,10 @@ class ProductosCamisetas : AppCompatActivity() {
         }
 
         val imagesProducts = arrayListOf(
-            R.drawable.ropa2,
-            R.drawable.ropa3,
-            R.drawable.ropa1,
-            R.drawable.ropa3
+            "https://i.pinimg.com/736x/b4/61/73/b461731f717c93168cfdeed81119d23c.jpg",
+            "https://i.pinimg.com/originals/9a/56/41/9a5641cc33f4d22a1448b31b673f31f8.jpg",
+            "https://www.induvest.com.ec/wp-content/uploads/2021/04/CAMISA-JEAN-REFLECTIVA-FRENTE.jpg",
+            "https://ae01.alicdn.com/kf/H168146c62e82494d839daf6f035a19cb6/Mother-Daughter-Baby-Clothes-Family-Matching-Outfits-Father-Son-T-Shirt-Plaid-Shirt-Mum-Mama-and.jpg_q50.jpg"
         )
         val carouselViewProductos = findViewById<CarouselView>(R.id.carouselViewProductos)
 
@@ -70,7 +72,7 @@ class ProductosCamisetas : AppCompatActivity() {
             carouselOffset = OffsetType.CENTER
             setCarouselViewListener { view, position ->
                 val imageView1 = view.findViewById<ImageView>(R.id.imageView)
-                imageView1.setImageDrawable(resources.getDrawable(imagesProducts[position]))
+                imageView1.setImage(CarouselItem(imagesProducts[position]))
                 imageView1.setOnClickListener {irActividad(CategoriasElect::class.java) }
             }
             show()

@@ -20,6 +20,8 @@ import com.jama.carouselview.enums.IndicatorAnimationType
 import com.jama.carouselview.enums.OffsetType
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
+import org.imaginativeworld.whynotimagecarousel.utils.setImage
 
 class ProductosEntretenimiento : AppCompatActivity() {
     var db = Firebase.firestore
@@ -54,10 +56,11 @@ class ProductosEntretenimiento : AppCompatActivity() {
         }
 
         val imagesProducts = arrayListOf(
-            R.drawable.ropa2,
-            R.drawable.ropa3,
-            R.drawable.ropa1,
-            R.drawable.ropa3
+            "https://i.blogs.es/feaa2f/nueva_sony_ps3_slim/450_1000.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Microsoft-Xbox-One-Console-wKinect.png/1200px-Microsoft-Xbox-One-Console-wKinect.png",
+            "https://img.redbull.com/images/c_crop,x_509,y_0,h_1527,w_1781/c_fill,w_650,h_540/q_auto,f_auto/redbullcom/2016/11/02/1331827173241_2/sony-ps4-pro",
+            "https://phantom-marca.unidadeditorial.es/2c7447c907807c0e71460e0da3448ba0/crop/0x79/773x512/resize/1320/f/jpg/assets/multimedia/imagenes/2021/03/25/16166666969525.jpg"
+
         )
         val carouselViewProductos = findViewById<CarouselView>(R.id.carouselViewProductos)
 
@@ -70,7 +73,7 @@ class ProductosEntretenimiento : AppCompatActivity() {
             carouselOffset = OffsetType.CENTER
             setCarouselViewListener { view, position ->
                 val imageView1 = view.findViewById<ImageView>(R.id.imageView)
-                imageView1.setImageDrawable(resources.getDrawable(imagesProducts[position]))
+                imageView1.setImage(CarouselItem(imagesProducts[position]))
                 imageView1.setOnClickListener {irActividad(CategoriasElect::class.java) }
             }
             show()

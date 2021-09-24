@@ -20,6 +20,8 @@ import com.jama.carouselview.enums.IndicatorAnimationType
 import com.jama.carouselview.enums.OffsetType
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
+import org.imaginativeworld.whynotimagecarousel.utils.setImage
 
 
 class ProductosZapatos : AppCompatActivity() {
@@ -55,10 +57,11 @@ class ProductosZapatos : AppCompatActivity() {
         }
 
         val imagesProducts = arrayListOf(
-            R.drawable.ropa2,
-            R.drawable.ropa3,
-            R.drawable.ropa1,
-            R.drawable.ropa3
+            "https://ae01.alicdn.com/kf/HTB1ZuHLbcnrK1RjSspkq6yuvXXal/Zapatos-deportivos-de-tejido-volador-para-hombre-zapatillas-con-cordones-transpirables-c-modas-y-con-absorci.jpg_Q90.jpg_.webp",
+            "https://i.pinimg.com/564x/47/71/fc/4771fcb7e3f3a6a2fe805f7fcc1230c7.jpg",
+            "https://www.calzadofaerma.com/wp-content/uploads/2020/07/Hermosos-tacones-de-mujer-de-color-Rojo2.jpg",
+            "https://i.pinimg.com/originals/27/ab/d7/27abd74ef49c73f37051a2bffde7cccd.jpg"
+
         )
         val carouselViewProductos = findViewById<CarouselView>(R.id.carouselViewProductos)
 
@@ -71,7 +74,7 @@ class ProductosZapatos : AppCompatActivity() {
             carouselOffset = OffsetType.CENTER
             setCarouselViewListener { view, position ->
                 val imageView1 = view.findViewById<ImageView>(R.id.imageView)
-                imageView1.setImageDrawable(resources.getDrawable(imagesProducts[position]))
+                imageView1.setImage(CarouselItem(imagesProducts[position]))
                 imageView1.setOnClickListener {irActividad(CategoriasElect::class.java) }
             }
             show()

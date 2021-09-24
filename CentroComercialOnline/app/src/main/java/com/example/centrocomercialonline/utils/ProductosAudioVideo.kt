@@ -20,6 +20,8 @@ import com.jama.carouselview.enums.IndicatorAnimationType
 import com.jama.carouselview.enums.OffsetType
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
+import org.imaginativeworld.whynotimagecarousel.utils.setImage
 
 
 class ProductosAudioVideo : AppCompatActivity() {
@@ -55,10 +57,10 @@ class ProductosAudioVideo : AppCompatActivity() {
         }
 
         val imagesProducts = arrayListOf(
-            R.drawable.ropa2,
-            R.drawable.ropa3,
-            R.drawable.ropa1,
-            R.drawable.ropa3
+            "https://dalthron.com.pe/wp-content/uploads/2019/04/SC-AKX400PS-Product_ImageGlobal-1_pe_es.png",
+            "https://m.media-amazon.com/images/I/61KxvageMJL._AC_SL1100_.jpg",
+            "https://www.todoparati.online/wp-content/uploads/2019/06/Aud%C3%ADfonos-Bluetooth-Cat.png",
+            "https://images.samsung.com/is/image/samsung/latin-fhdtv-j5290-un43j5290ahxpa-frontblack-197304796?\$720_576_PNG\$"
         )
         val carouselViewProductos = findViewById<CarouselView>(R.id.carouselViewProductos)
 
@@ -71,7 +73,7 @@ class ProductosAudioVideo : AppCompatActivity() {
             carouselOffset = OffsetType.CENTER
             setCarouselViewListener { view, position ->
                 val imageView1 = view.findViewById<ImageView>(R.id.imageView)
-                imageView1.setImageDrawable(resources.getDrawable(imagesProducts[position]))
+                imageView1.setImage(CarouselItem(imagesProducts[position]))
                 imageView1.setOnClickListener {irActividad(CategoriasElect::class.java) }
             }
             show()

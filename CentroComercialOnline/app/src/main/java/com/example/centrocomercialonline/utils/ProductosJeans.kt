@@ -20,6 +20,8 @@ import com.jama.carouselview.enums.IndicatorAnimationType
 import com.jama.carouselview.enums.OffsetType
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
+import org.imaginativeworld.whynotimagecarousel.utils.setImage
 
 
 class ProductosJeans : AppCompatActivity() {
@@ -55,10 +57,11 @@ class ProductosJeans : AppCompatActivity() {
         }
 
         val imagesProducts = arrayListOf(
-            R.drawable.ropa2,
-            R.drawable.ropa3,
-            R.drawable.ropa1,
-            R.drawable.ropa3
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLU3Fr5qwa5j0u1Ao-P6hqq-1iAxVU7o0Lc_HxaZHpWAv3IfrEFTRURYUOdBVpFJe4ICg&usqp=CAU",
+            "https://i.pinimg.com/originals/14/c4/f3/14c4f341e0a6440c90920e7c23a237b4.jpg",
+            "https://previews.123rf.com/images/georgerudy/georgerudy1605/georgerudy160501062/57603827-retrato-de-cuerpo-entero-de-ni%C3%B1os-poco-lindo-en-jeans-ropa-elegante-mirando-la-c%C3%A1mara-y-sonriente-de.jpg",
+            "https://cdn.fashiola.mx/L549919575/reclaimed-vintage-inspired-the-83-unisex-relaxed-jean-in-light-wash-blue.jpg"
+
         )
         val carouselViewProductos = findViewById<CarouselView>(R.id.carouselViewProductos)
 
@@ -71,7 +74,7 @@ class ProductosJeans : AppCompatActivity() {
             carouselOffset = OffsetType.CENTER
             setCarouselViewListener { view, position ->
                 val imageView1 = view.findViewById<ImageView>(R.id.imageView)
-                imageView1.setImageDrawable(resources.getDrawable(imagesProducts[position]))
+                imageView1.setImage(CarouselItem(imagesProducts[position]))
                 imageView1.setOnClickListener {irActividad(CategoriasElect::class.java) }
             }
             show()

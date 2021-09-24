@@ -20,6 +20,8 @@ import com.jama.carouselview.enums.IndicatorAnimationType
 import com.jama.carouselview.enums.OffsetType
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
+import org.imaginativeworld.whynotimagecarousel.utils.setImage
 
 class ProductosLineaBlanca : AppCompatActivity() {
     var db = Firebase.firestore
@@ -54,10 +56,11 @@ class ProductosLineaBlanca : AppCompatActivity() {
         }
 
         val imagesProducts = arrayListOf(
-            R.drawable.ropa2,
-            R.drawable.ropa3,
-            R.drawable.ropa1,
-            R.drawable.ropa3
+            "https://crecos.vteximg.com.br/arquivos/ids/178405-1000-1000/cocina-mabe-EM7630FX0.jpg?v=637167079677600000",
+            "https://gollo-prod-grupounicomer.netdna-ssl.com/media/catalog/product/cache/7536f51f1dcaf1415428fad840de9edd/1/0/109475_00.jpg",
+            "https://livansud.vteximg.com.br/arquivos/ids/160255-1000-1000/licuadora-hamilton-beach-58615-9-velocidades-1.jpg?v=637488273431600000",
+            "https://tiaecuador.vteximg.com.br/arquivos/ids/181029-1000-1000/imagen_2021-06-02_164736.png?v=637582672569500000"
+
         )
         val carouselViewProductos = findViewById<CarouselView>(R.id.carouselViewProductos)
 
@@ -70,7 +73,7 @@ class ProductosLineaBlanca : AppCompatActivity() {
             carouselOffset = OffsetType.CENTER
             setCarouselViewListener { view, position ->
                 val imageView1 = view.findViewById<ImageView>(R.id.imageView)
-                imageView1.setImageDrawable(resources.getDrawable(imagesProducts[position]))
+                imageView1.setImage(CarouselItem(imagesProducts[position]))
                 imageView1.setOnClickListener {irActividad(CategoriasElect::class.java) }
             }
             show()
