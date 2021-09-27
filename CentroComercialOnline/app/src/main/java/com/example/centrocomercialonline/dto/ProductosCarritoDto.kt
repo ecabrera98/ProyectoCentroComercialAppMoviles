@@ -2,11 +2,15 @@ package com.example.centrocomercialonline.dto
 
 import android.os.Parcel
 import android.os.Parcelable
+import java.text.NumberFormat
+import java.util.*
 
 data class ProductosCarritoDto(
     var imageId:String = "",
     var nombre_producto: String = "",
-    var precio_producto: Double = 0.0
+    var precio_producto: Double = 0.0,
+    var cantidad_producto: Int = 0,
+    var subtotal: Double = 0.0
     ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString().toString(),
@@ -34,5 +38,4 @@ data class ProductosCarritoDto(
             return arrayOfNulls(size)
         }
     }
-
 }

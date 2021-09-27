@@ -8,7 +8,7 @@ import android.util.Log
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.centrocomercialonline.adapters.AdapterCarrito
+import com.example.centrocomercialonline.adapters.AdapterComprar
 import com.example.centrocomercialonline.dto.ProductosCarritoDto
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -16,7 +16,7 @@ import com.google.firebase.ktx.Firebase
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
 class Carrito : AppCompatActivity(){
-    private lateinit var adaptadorCarrito: AdapterCarrito
+    private lateinit var adaptadorCarrito: AdapterComprar
     private lateinit var recyclerView: RecyclerView
     private lateinit var productoArrayList : ArrayList<ProductosCarritoDto>
     private val title by lazy { findViewById<TextView>(R.id.title1) }
@@ -47,17 +47,16 @@ class Carrito : AppCompatActivity(){
         recyclerView.setHasFixedSize(true)
 
         productoArrayList = arrayListOf()
-        adaptadorCarrito = AdapterCarrito(productoArrayList,this)
+        adaptadorCarrito = AdapterComprar(productoArrayList,this)
 
         recyclerView.adapter = adaptadorCarrito
         cargarProductoCarrito()
 
         val comprar = findViewById<TextView>(R.id.btn_comprar_carrito)
         comprar.setOnClickListener {
-            irActividad(Pedido::class.java)
+            irActividad(Comprar::class.java)
         }
     }
-
 
 
 
@@ -65,8 +64,9 @@ class Carrito : AppCompatActivity(){
         val instanciaAuth = FirebaseAuth.getInstance()
         val usuarioLocal = instanciaAuth.currentUser
         val db = Firebase.firestore
-        val referencia = db.collection("carrito_${usuarioLocal!!.email.toString()}")
-        referencia
+        db.collection("Carritos")
+            .document("carrito_${usuarioLocal!!.email.toString()}")
+            .collection("carrito_${usuarioLocal!!.email.toString()}")
             .get()
             .addOnSuccessListener {
                 for (document in it){
@@ -74,6 +74,8 @@ class Carrito : AppCompatActivity(){
                     producto!!.imageId = document.get("Imagen").toString()
                     producto!!.nombre_producto = document.get("NombreProducto").toString()
                     producto!!.precio_producto = document.getDouble("Precio")!!
+                    producto!!.cantidad_producto = document.getLong("Cantidad")!!.toInt()
+                    producto!!.subtotal = document.getDouble("Subtotal")!!
 
                     productoArrayList.add(producto)
                     adaptadorCarrito?.notifyDataSetChanged()

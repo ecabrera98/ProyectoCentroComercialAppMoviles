@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CentroComercialOnline">
         <activity
+            android:name=".Pedidos"
+            android:exported="true" />
+        <activity
             android:name=".Notificaciones"
             android:exported="true" />
         <activity
@@ -40,7 +43,7 @@
             android:name=".DetalleProductos"
             android:exported="true" />
         <activity
-            android:name=".Pedido"
+            android:name=".Comprar"
             android:exported="true" />
         <activity
             android:name=".Carrito"

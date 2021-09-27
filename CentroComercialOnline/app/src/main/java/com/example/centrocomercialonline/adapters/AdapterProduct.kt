@@ -68,7 +68,7 @@ class AdapterProduct (private val productList : ArrayList<BProductosFirebase>, v
             val precio : TextView = itemView.findViewById(R.id.subtitle)
 
             nombre.text = model.nombre_producto
-            precio.text = model.precio_producto.toString()
+            precio.text = "$${model.precio_producto}"
         }
 
 

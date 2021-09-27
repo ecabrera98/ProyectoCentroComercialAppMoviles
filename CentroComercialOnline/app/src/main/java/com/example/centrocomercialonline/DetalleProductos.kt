@@ -25,7 +25,12 @@ class DetalleProductos : AppCompatActivity() {
         val nombre = findViewById<TextView>(R.id.tv_nombre_producto)
         val categoria = findViewById<TextView>(R.id.tv_categoria_producto)
         val detalle = findViewById<TextView>(R.id.tv_descripcion_producto)
+        val preciou_producto = findViewById<TextView>(R.id.tv_precio_producto)
         val imagen = findViewById<ImageView>(R.id.iv_product)
+        var cantidadproductos = 1
+        val subtotal = findViewById<TextView>(R.id.txv_precio_td)
+        val cantidad = findViewById<TextView>(R.id.txv_cantidad_productod)
+        var precio_aumento = 0.0
 
         val intent = intent
         val nombreProducto = intent.getStringExtra("iNombre")
@@ -38,29 +43,62 @@ class DetalleProductos : AppCompatActivity() {
         var ingresoPrecio: Double = precioProducto
         categoria.text = catProducto
         detalle.text = descProducto
+        preciou_producto.text = "$${ingresoPrecio}"
 
         val storageRef = FirebaseStorage.getInstance().reference.child("imagesApp/$imagenProducto.jpeg")
         with(this)
                 .load(storageRef)
                 .into(imagen)
 
+        val botonAumentar = findViewById<ImageView>(R.id.img_aumentard)
+        val botonDisminuir = findViewById<ImageView>(R.id.img_disminuird)
+
+        precio_aumento=ingresoPrecio
+        subtotal.text = "$${ingresoPrecio}"
+        botonAumentar.setOnClickListener {
+            cantidadproductos = cantidadproductos + 1
+            cantidad.text = cantidadproductos.toString()
+            precio_aumento=0.0
+            precio_aumento = ingresoPrecio*cantidadproductos
+            subtotal.text = "$${precio_aumento}"
+            Log.i("resultado-total", "precioaumento${precio_aumento}")
+        }
+
+        botonDisminuir.setOnClickListener {
+            if(cantidadproductos>1) {
+                cantidadproductos = cantidadproductos - 1
+                cantidad.text = cantidadproductos.toString()
+                precio_aumento=0.0
+                precio_aumento = ingresoPrecio*cantidadproductos
+                subtotal.text = "$${precio_aumento}"
+                Log.i("resultado-total", "precioaumento${precio_aumento}")
+            }else{
+                subtotal.text = "$${ingresoPrecio}"
+                cantidadproductos=1
+            }
+        }
+
         val carito = findViewById<Button>(R.id.tv_cart)
         carito.setOnClickListener {
             irActividad(Carrito::class.java,
                 arrayListOf(Pair("Producto",ProductosCarritoDto
-                    (imagenProducto!!,nombreProducto!!,precioProducto))
+                    (imagenProducto!!,nombreProducto!!,precioProducto,cantidadproductos))
                 )
             )
             val nuevoProducto = hashMapOf<String, Any>(
                 "Imagen" to imagenProducto.toString(),
                 "NombreProducto" to nombre.text,
                 "Precio" to ingresoPrecio,
+                "Cantidad" to cantidadproductos,
+                "Subtotal" to precio_aumento
             )
             val db = Firebase.firestore
             val instanciaAuth = FirebaseAuth.getInstance()
             val usuarioLocal = instanciaAuth.currentUser
-            val referencia = db.collection("carrito_${usuarioLocal!!.email.toString()}")
+            val referencia = db.collection("Carritos")
             referencia
+                .document("carrito_${usuarioLocal!!.email.toString()}")
+                .collection("carrito_${usuarioLocal!!.email.toString()}")
                 .document(imagenProducto)
                 .set(nuevoProducto)
                 .addOnSuccessListener {
@@ -73,7 +111,6 @@ class DetalleProductos : AppCompatActivity() {
 
 
     }
-
 
 
     fun irActividad(

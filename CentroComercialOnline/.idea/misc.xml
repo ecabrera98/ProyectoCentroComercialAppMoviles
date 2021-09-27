@@ -26,11 +26,13 @@
         <entry key="app/src/main/res/layout/activity_categoria_productos.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_categorias_elect.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_categorias_ropa.xml" value="0.1890625" />
-        <entry key="app/src/main/res/layout/activity_detalle_productos.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_comprar.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_detalle_productos.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_elects_carousel.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/activity_horizontal.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_information_update.xml" value="0.175" />
-        <entry key="app/src/main/res/layout/activity_item_carrito.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_item_carrito.xml" value="0.67" />
+        <entry key="app/src/main/res/layout/activity_item_comprar.xml" value="0.67" />
         <entry key="app/src/main/res/layout/activity_login_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_metodo_pago.xml" value="0.1" />
