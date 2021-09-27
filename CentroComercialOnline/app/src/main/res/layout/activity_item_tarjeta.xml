@@ -9,7 +9,8 @@
         android:id="@+id/rl_tarjeta"
         android:layout_width="match_parent"
         android:layout_height="205dp"
-        android:layout_margin="15dp">
+        android:layout_margin="15dp"
+        android:background="#E1F5FE">
 
         <ImageView
             android:id="@+id/imageView2"
@@ -27,9 +28,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="151dp"
+            android:layout_marginEnd="100dp"
             android:layout_marginBottom="103dp"
-            android:text="2342432343253222" />
+            android:text="2342432343253222"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/textView20"
@@ -39,17 +41,19 @@
             android:layout_alignEnd="@+id/txv_fecha_expiración"
             android:layout_marginEnd="-34dp"
             android:layout_marginBottom="22dp"
-            android:text="Fecha de Expiración" />
+            android:text="Fecha de Expiración"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/textView18"
-            android:layout_width="121dp"
-            android:layout_height="wrap_content"
+            android:layout_width="125dp"
+            android:layout_height="22dp"
             android:layout_above="@+id/txv_nombre_tarjeta"
             android:layout_alignEnd="@+id/txv_nombre_tarjeta"
-            android:layout_marginEnd="-51dp"
-            android:layout_marginBottom="22dp"
-            android:text="Titular de la Tarjeta" />
+            android:layout_marginEnd="-42dp"
+            android:layout_marginBottom="23dp"
+            android:text="Titular de la Tarjeta"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/txv_fecha_expiración"
@@ -59,7 +63,8 @@
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="45dp"
             android:layout_marginBottom="22dp"
-            android:text="09/25" />
+            android:text="09/25"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/txv_nombre_tarjeta"
@@ -69,6 +74,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="34dp"
             android:layout_marginBottom="22dp"
-            android:text="Joselyn" />
+            android:text="Joselyn"
+            android:textAlignment="center" />
     </RelativeLayout>
 </LinearLayout>

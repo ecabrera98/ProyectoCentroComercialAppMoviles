@@ -58,8 +58,6 @@ class Carrito : AppCompatActivity(){
         }
     }
 
-
-
     fun cargarProductoCarrito(){
         val instanciaAuth = FirebaseAuth.getInstance()
         val usuarioLocal = instanciaAuth.currentUser

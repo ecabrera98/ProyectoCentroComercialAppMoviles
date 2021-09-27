@@ -4,21 +4,25 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.centrocomercialonline.adapters.AdapterMetodoPago
+import com.example.centrocomercialonline.dto.ProductosCarritoDto
 import com.example.centrocomercialonline.dto.TarjetaDto
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
-class MetodoPago : AppCompatActivity(), AdapterMetodoPago.ClickListener {
+class MetodoPago : AppCompatActivity(){
     private val title by lazy { findViewById<TextView>(R.id.title1) }
     private val menu by lazy { findViewById<ChipNavigationBar>(R.id.bottom_menu1) }
-    private val itemList: MutableList<TarjetaDto> = mutableListOf()
-    private var recyclerView: RecyclerView? = null
-    var adapter: AdapterMetodoPago? = null
+    private lateinit var adaptadorTarjeta: AdapterMetodoPago
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var productoArrayList : ArrayList<TarjetaDto>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,28 +46,51 @@ class MetodoPago : AppCompatActivity(), AdapterMetodoPago.ClickListener {
             menu.showBadge(R.id.perfil, 32)
         }
 
-        recyclerView = findViewById(R.id.rcv_tarjeta)
-        prepareItem()
-        adapter = AdapterMetodoPago(itemList)
 
-        recyclerView?.layoutManager = LinearLayoutManager(this)
-        recyclerView?.itemAnimator = DefaultItemAnimator()
-        recyclerView?.adapter = adapter
+        recyclerView = findViewById(R.id.rcv_tarjeta)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(true)
+
+        productoArrayList = arrayListOf()
+        //productoArrayList.add(TarjetaDto("1789654123","Joselyn Taco","20/08","149"))
+        adaptadorTarjeta = AdapterMetodoPago(productoArrayList,this)
+
+        recyclerView.adapter = adaptadorTarjeta
+        cargarTarjetas()
 
         val imgCard = findViewById<ImageButton>(R.id.img_añadir)
         imgCard.setOnClickListener {
             irActividad(AgregarTarjeta::class.java)
+            Log.i("Tarjeta","Se fue a la Tarjeta")
         }
 
 
     }
 
-    private fun prepareItem() {
-        itemList.add(TarjetaDto("1758412365805289", "Araceli", "05/24","149"))
+    private fun cargarTarjetas() {
+        val instanciaAuth = FirebaseAuth.getInstance()
+        val usuarioLocal = instanciaAuth.currentUser
+        val db = Firebase.firestore
+        val referencia = db.collection("Tarjetas")
+        referencia
+            .document("tarjeta_${usuarioLocal!!.email.toString()}")
+            .collection("tarjeta_${usuarioLocal!!.email.toString()}")
+            .get()
+            .addOnSuccessListener {
+                for (document in it){
+                    var producto = document.toObject(TarjetaDto::class.java)
+                    producto!!.numeroTarjeta= document.get("NumeroTarjeta").toString()
+                    producto!!.nombreTitular = document.get("NombreTitular").toString()
+                    producto!!.fechaExpiracion = document.get("FechaExpiracion").toString()
 
+                    productoArrayList.add(producto)
+                    adaptadorTarjeta?.notifyDataSetChanged()
+                }
+            }
+            .addOnFailureListener {
+                Log.i("CARRITO", "FALLO")
+            }
     }
-
-    override fun itemClicked (envio: ImageButton) { }
 
     fun irActividad(
         clase: Class<*>,
