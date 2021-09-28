@@ -6,6 +6,7 @@
         <entry key="../../../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bordes_redondos.xml" value="0.20520833333333333" />
         <entry key="app/src/main/res/drawable/ic_activity.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_forward.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_box.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_menu.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_more.xml" value="0.1" />
@@ -20,9 +21,9 @@
         <entry key="app/src/main/res/layout/activity_actualizar_user.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_actualizar_usuario.xml" value="0.175" />
         <entry key="app/src/main/res/layout/activity_agregar_tarjeta.xml" value="0.175" />
-        <entry key="app/src/main/res/layout/activity_barranavegacion.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_barranavegacion.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_buscar_producto.xml" value="0.12454710144927536" />
-        <entry key="app/src/main/res/layout/activity_carrito.xml" value="0.175" />
+        <entry key="app/src/main/res/layout/activity_carrito.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_categoria_productos.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_categorias_elect.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_categorias_ropa.xml" value="0.1890625" />

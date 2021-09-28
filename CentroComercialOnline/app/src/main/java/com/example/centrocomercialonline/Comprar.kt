@@ -9,7 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.centrocomercialonline.adapters.AdapterCarrito
+import com.example.centrocomercialonline.adapters.AdapterComprar
 import com.example.centrocomercialonline.dto.ProductosCarritoDto
 import com.example.centrocomercialonline.dto.UsuariosDto
 import com.google.firebase.auth.FirebaseAuth
@@ -22,7 +22,7 @@ import kotlin.collections.ArrayList
 import kotlin.collections.hashMapOf as hashMapOf
 
 class Comprar : AppCompatActivity(){
-    private lateinit var adaptadorComprar: AdapterCarrito
+    private lateinit var adaptadorComprar: AdapterComprar
     private lateinit var productoArrayList : ArrayList<ProductosCarritoDto>
     private lateinit var recyclerView: RecyclerView
     var arregloUsuarios = arrayListOf<UsuariosDto>()
@@ -53,19 +53,27 @@ class Comprar : AppCompatActivity(){
         recyclerView.setHasFixedSize(true)
 
         productoArrayList = arrayListOf()
-        adaptadorComprar = AdapterCarrito(productoArrayList,this)
+        adaptadorComprar = AdapterComprar(productoArrayList,this)
 
         recyclerView.adapter = adaptadorComprar
 
         cargarProductoCarrito()
         uploadPersonas()
         val botonTarjeta = findViewById<Button>(R.id.btn_metodo_pago)
-        botonTarjeta.setOnClickListener {irActividad(MetodoPago::class.java) }
+        botonTarjeta.setOnClickListener {
+            irActividad(MetodoPago::class.java)
+        }
 
         val botonComprar = findViewById<Button>(R.id.btn_comprar_pedido)
         botonComprar.setOnClickListener {
             guardarDatosPedido()
+            guardarDatosCarrito()
             eliminarProductocCarrito()
+        }
+
+        val botonCancelar = findViewById<Button>(R.id.btn_cancelar_pedido)
+        botonCancelar.setOnClickListener {
+            irActividad(Carrito::class.java)
         }
     }
 
@@ -101,6 +109,36 @@ class Comprar : AppCompatActivity(){
                     val totalPagar = findViewById<TextView>(R.id.tv_TotalPago)
                     totalPagar.text = calcularTotal().toString()
                     adaptadorComprar?.notifyDataSetChanged()
+                }
+
+            }
+            .addOnFailureListener {
+                Log.i("CARRITO", "FALLO")
+            }
+
+    }
+
+
+    fun guardarDatosCarrito(){
+        val instanciaAuth = FirebaseAuth.getInstance()
+        val usuarioLocal = instanciaAuth.currentUser
+        val db = Firebase.firestore
+        db.collection("Carritos")
+            .document("carrito_${usuarioLocal!!.email.toString()}")
+            .collection("carrito_${usuarioLocal!!.email.toString()}")
+            .get()
+            .addOnSuccessListener {
+                for (document in it){
+                    var producto = document.toObject(ProductosCarritoDto::class.java)
+                    producto!!.imageId = document.get("Imagen").toString()
+                    producto!!.nombre_producto = document.get("NombreProducto").toString()
+                    producto!!.precio_producto = document.getDouble("Precio")!!
+                    producto!!.cantidad_producto = document.getLong("Cantidad")!!.toInt()
+                    producto!!.subtotal = document.getDouble("Subtotal")!!
+                    productoArrayList.add(producto)
+                    val totalPagar = findViewById<TextView>(R.id.tv_TotalPago)
+                    totalPagar.text = calcularTotal().toString()
+                    adaptadorComprar?.notifyDataSetChanged()
                     guardarProductosCarrito(producto!!.imageId,producto!!.nombre_producto,
                         producto!!.precio_producto,  producto!!.cantidad_producto, producto!!.subtotal)
                 }
@@ -111,7 +149,6 @@ class Comprar : AppCompatActivity(){
             }
 
     }
-
 
     fun eliminarProductocCarrito(){
         val instanciaAuth = FirebaseAuth.getInstance()

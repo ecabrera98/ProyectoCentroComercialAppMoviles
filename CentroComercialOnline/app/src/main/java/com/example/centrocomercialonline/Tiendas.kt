@@ -5,9 +5,17 @@ import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
+import com.example.centrocomercialonline.dto.ProductosCarritoDto
+import com.example.centrocomercialonline.dto.TiendasDto
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
 class Tiendas : AppCompatActivity(){
@@ -16,8 +24,9 @@ class Tiendas : AppCompatActivity(){
     private val title by lazy { findViewById<TextView>(R.id.title1) }
     private val menu by lazy { findViewById<ChipNavigationBar>(R.id.bottom_menu1) }
 
-    private var lastColor: Int = 0
+    private lateinit var tiendasArrayList : ArrayList<TiendasDto>
 
+    private var lastColor: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +58,54 @@ class Tiendas : AppCompatActivity(){
         val imageView2 = findViewById<ImageView>(R.id.img_tienda2)
         imageView2.setOnClickListener {irActividad(CategoriasRopa::class.java) }
 
+        tiendasArrayList = arrayListOf()
+        setearTiendaElectFirebase()
+        setearTiendaRopaFirebase()
     }
+
+
+    fun setearTiendaElectFirebase(){
+        val etE = findViewById<TextView>(R.id.tv_tienda_elect)
+        val db = Firebase.firestore
+        db.collection("tiendas")
+            .whereEqualTo("categoria_tienda", "Electrodomésticos")
+            .get()
+            .addOnSuccessListener {
+                for (document in it){
+                    val tiendas = document.toObject(TiendasDto::class.java)
+                    tiendas.title= document.get("nombre_tienda").toString()
+                    etE.text = tiendas.title
+                    tiendasArrayList.add(tiendas)
+                    Log.i("firestore-tiendas", "Se estrajó la tienda con éxito ${tiendas.title}")
+                }
+            }
+            .addOnFailureListener {
+                Log.i("firestore-tiendas", "Falló: $it")
+            }
+    }
+
+
+    fun setearTiendaRopaFirebase(){
+        val etR = findViewById<TextView>(R.id.tv_tienda_ropa)
+        val db = Firebase.firestore
+        db.collection("tiendas")
+            .whereEqualTo("categoria_tienda", "Ropa")
+            .get()
+            .addOnSuccessListener {
+                for (document in it){
+                    val tiendas = document.toObject(TiendasDto::class.java)
+                    tiendas.title= document.get("nombre_tienda").toString()
+                    etR.text = tiendas.title
+                    tiendasArrayList.add(tiendas)
+                    Log.i("firestore-tiendas", "Se estrajó la tienda con éxito ${tiendas.title}")
+                }
+            }
+            .addOnFailureListener {
+                Log.i("firestore-tiendas", "Falló: $it")
+            }
+    }
+
+
     fun irActividad(
         clase: Class<*>,
         parametros: ArrayList<Pair<String, *>>? = null,

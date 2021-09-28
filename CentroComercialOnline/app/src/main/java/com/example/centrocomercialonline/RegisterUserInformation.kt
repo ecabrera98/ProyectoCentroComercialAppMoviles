@@ -10,6 +10,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import com.example.centrocomercialonline.dto.UsuariosDto
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -18,13 +19,20 @@ class RegisterUserInformation : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_information)
-        val botonIrRegistrarse = findViewById<Button>(
-            R.id.registrarse2
-        )
+
+        val editTextNombreUsuario = findViewById<EditText>(R.id.username)
+        val editTextFechaNacimiento = findViewById<EditText>(R.id.fechanacimiento)
+        val editTextTelefono = findViewById<EditText>(R.id.telefono)
+
+        val botonIrRegistrarse = findViewById<Button>(R.id.registrarse2)
         botonIrRegistrarse
             .setOnClickListener {
-                crearUsuario()
-                irActividad(Tiendas::class.java)
+                if(editTextNombreUsuario.text.isNotEmpty() && editTextFechaNacimiento.text.isNotEmpty()
+                    && editTextTelefono.text.isNotEmpty()){
+                    crearUsuario()
+                    irActividad(Tiendas::class.java)
+                }
+                showAlert()
             }
 
         //setup
@@ -86,6 +94,15 @@ class RegisterUserInformation : AppCompatActivity() {
 
     }
 
+
+    fun showAlert(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Error")
+        builder.setMessage("Existen campos vaciós en el formulario de registro")
+        builder.setPositiveButton("Aceptar",null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
 
 
     fun irActividad(

@@ -5,12 +5,12 @@
         android:id="@+id/home"
         android:icon="@drawable/ic_home"
         android:title="Inicio"
-        app:cnb_iconColor="@color/colorPrimary"/>
+        app:cnb_iconColor="@color/accent" />
     <item
         android:id="@+id/buscar"
-        android:icon="@drawable/ic_activity"
+        android:icon="@drawable/ic_search"
         android:title="Buscar"
-        app:cnb_iconColor="@color/colorSecundary"/>
+        app:cnb_iconColor="@color/btnSignActivity" />
     <item
         android:id="@+id/carrito"
         android:icon="@drawable/ic_shopping_cart"
@@ -18,9 +18,9 @@
         app:cnb_iconColor="@color/colorTres" />
     <item
         android:id="@+id/perfil"
-        android:icon="@drawable/ic_settings"
+        android:icon="@drawable/iconsusuario"
         android:title="Perfil"
-        app:cnb_iconColor="@color/white" />
+        app:cnb_iconColor="@color/purple_200" />
 
 
 

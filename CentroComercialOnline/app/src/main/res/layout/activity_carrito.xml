@@ -23,15 +23,30 @@
 
     <Button
         android:id="@+id/btn_comprar_carrito"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="143dp"
+        android:layout_height="61dp"
+        android:layout_marginEnd="36dp"
         android:text="Comprar"
         app:icon="@drawable/ic_baseline_arrow_forward"
         app:iconGravity="textEnd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.876" />
+
+    <Button
+        android:id="@+id/btn_agregar_productos"
+        android:layout_width="163dp"
+        android:layout_height="61dp"
+        android:text="Agregar"
+        app:icon="@mipmap/ic_launcher_add_adaptive_fore"
+        app:iconGravity="textStart"
+        app:iconSize="@dimen/dimen48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.159"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.906" />
+        app:layout_constraintVertical_bias="0.876" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

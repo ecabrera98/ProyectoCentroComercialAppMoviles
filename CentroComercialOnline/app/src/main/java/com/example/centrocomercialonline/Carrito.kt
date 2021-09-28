@@ -1,14 +1,16 @@
 package com.example.centrocomercialonline
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.centrocomercialonline.adapters.AdapterComprar
+import com.example.centrocomercialonline.adapters.AdapterCarrito
 import com.example.centrocomercialonline.dto.ProductosCarritoDto
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -16,7 +18,7 @@ import com.google.firebase.ktx.Firebase
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
 class Carrito : AppCompatActivity(){
-    private lateinit var adaptadorCarrito: AdapterComprar
+    private lateinit var adaptadorCarrito: AdapterCarrito
     private lateinit var recyclerView: RecyclerView
     private lateinit var productoArrayList : ArrayList<ProductosCarritoDto>
     private val title by lazy { findViewById<TextView>(R.id.title1) }
@@ -47,14 +49,14 @@ class Carrito : AppCompatActivity(){
         recyclerView.setHasFixedSize(true)
 
         productoArrayList = arrayListOf()
-        adaptadorCarrito = AdapterComprar(productoArrayList,this)
+        adaptadorCarrito = AdapterCarrito(productoArrayList,this)
 
         recyclerView.adapter = adaptadorCarrito
         cargarProductoCarrito()
+        val botonAgregar = findViewById<TextView>(R.id.btn_agregar_productos)
 
-        val comprar = findViewById<TextView>(R.id.btn_comprar_carrito)
-        comprar.setOnClickListener {
-            irActividad(Comprar::class.java)
+        botonAgregar.setOnClickListener {
+            irActividad(BuscarProducto::class.java)
         }
     }
 
@@ -64,19 +66,26 @@ class Carrito : AppCompatActivity(){
         val db = Firebase.firestore
         db.collection("Carritos")
             .document("carrito_${usuarioLocal!!.email.toString()}")
-            .collection("carrito_${usuarioLocal!!.email.toString()}")
+            .collection("carrito_${usuarioLocal.email.toString()}")
             .get()
             .addOnSuccessListener {
                 for (document in it){
                     var producto = document.toObject(ProductosCarritoDto::class.java)
-                    producto!!.imageId = document.get("Imagen").toString()
-                    producto!!.nombre_producto = document.get("NombreProducto").toString()
-                    producto!!.precio_producto = document.getDouble("Precio")!!
-                    producto!!.cantidad_producto = document.getLong("Cantidad")!!.toInt()
-                    producto!!.subtotal = document.getDouble("Subtotal")!!
-
+                    producto.imageId = document.get("Imagen").toString()
+                    producto.nombre_producto = document.get("NombreProducto").toString()
+                    producto.precio_producto = document.getDouble("Precio")!!
+                    producto.cantidad_producto = document.getLong("Cantidad")!!.toInt()
+                    producto.subtotal = document.getDouble("Subtotal")!!
                     productoArrayList.add(producto)
-                    adaptadorCarrito?.notifyDataSetChanged()
+                    adaptadorCarrito.notifyDataSetChanged()
+                }
+                val comprar = findViewById<TextView>(R.id.btn_comprar_carrito)
+                comprar.setOnClickListener {
+                if(adaptadorCarrito.itemCount == 0) {
+                    showAlert()
+                }else{
+                    irActividad(Comprar::class.java)
+                }
                 }
             }
             .addOnFailureListener {
@@ -85,6 +94,15 @@ class Carrito : AppCompatActivity(){
 
     }
 
+
+    fun showAlert(){
+        val builder = androidx.appcompat.app.AlertDialog.Builder(this)
+        builder.setTitle("CARRITO VACIO DETECTADO")
+        builder.setMessage("Porfavor añada artículos con el Botón AGREGAR")
+        builder.setPositiveButton("Aceptar",null)
+        val dialog: androidx.appcompat.app.AlertDialog = builder.create()
+        dialog.show()
+    }
 
     fun irActividad(
         clase: Class<*>,
