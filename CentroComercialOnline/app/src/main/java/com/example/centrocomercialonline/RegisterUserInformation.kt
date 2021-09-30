@@ -32,7 +32,9 @@ class RegisterUserInformation : AppCompatActivity() {
                     crearUsuario()
                     irActividad(Tiendas::class.java)
                 }
-                showAlert()
+                else {
+                    showAlert()
+                }
             }
 
         //setup

@@ -58,6 +58,12 @@ class Carrito : AppCompatActivity(){
         botonAgregar.setOnClickListener {
             irActividad(BuscarProducto::class.java)
         }
+
+        val comprar = findViewById<TextView>(R.id.btn_comprar_carrito)
+        comprar.setOnClickListener {
+            showAlert()
+        }
+
     }
 
     fun cargarProductoCarrito(){
@@ -78,15 +84,16 @@ class Carrito : AppCompatActivity(){
                     producto.subtotal = document.getDouble("Subtotal")!!
                     productoArrayList.add(producto)
                     adaptadorCarrito.notifyDataSetChanged()
+                    val comprar = findViewById<TextView>(R.id.btn_comprar_carrito)
+                    comprar.setOnClickListener {
+                        if(adaptadorCarrito.itemCount == 0) {
+                            showAlert()
+                        }else{
+                            irActividad(Comprar::class.java)
+                        }
+                    }
                 }
-                val comprar = findViewById<TextView>(R.id.btn_comprar_carrito)
-                comprar.setOnClickListener {
-                if(adaptadorCarrito.itemCount == 0) {
-                    showAlert()
-                }else{
-                    irActividad(Comprar::class.java)
-                }
-                }
+
             }
             .addOnFailureListener {
                 Log.i("CARRITO", "FALLO")

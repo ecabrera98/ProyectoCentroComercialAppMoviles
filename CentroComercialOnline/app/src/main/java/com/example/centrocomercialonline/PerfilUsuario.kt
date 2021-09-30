@@ -57,11 +57,6 @@ class PerfilUsuario : AppCompatActivity() {
             irActividad(ActualizarUserInformation::class.java)
         }
 
-        val botonNotificaciones= findViewById<TextView>(R.id.textViewNotificaciones)
-        botonNotificaciones.setOnClickListener {
-            irActividad(Notificaciones::class.java)
-        }
-
         val botonCerrarSesion = findViewById<Button>(R.id.btnCerrarSesion)
         botonCerrarSesion.setOnClickListener{
             val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
